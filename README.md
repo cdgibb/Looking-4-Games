@@ -20,19 +20,19 @@ There is no centralized or efficient way for tabletop gamers to find local group
 
 ## App Functions  
 1. Customer (the user with the customer role):
-   i. Create/modify customer profile - Register as a player and indicate game role (if applicable).
-   ii. View available services - View nearby registered gameplay venues, open games, and available times.
-   iii. Subscribe to available services - Sign up to join a game at an available time/venue.
-   iv. Write reviews for subscribed services - Review gameplay venues.
+   i. Create/modify customer profile - Register as a player and indicate game role (if applicable).  
+   ii. View available services - View nearby registered gameplay venues, open games, and available times.  
+   iii. Subscribe to available services - Sign up to join a game at an available time/venue.  
+   iv. Write reviews for subscribed services - Review gameplay venues.  
 
-3. Provider (the user with the provider role):
-   i. Create/modify/remove provider profile - Register as a gameplay venue.
-   ii. Create services - Create and maintain a schedule of ongoing games and available time slots during business hours.
-   iii. View customer statistics - View players signed up at their location and which times.
-   iv. Reply to reviews - Respond to customer reviews of gameplay venues.
+3. Provider (the user with the provider role):  
+   i. Create/modify/remove provider profile - Register as a gameplay venue.  
+   ii. Create services - Create and maintain a schedule of ongoing games and available time slots during business hours.  
+   iii. View customer statistics - View players signed up at their location and which times.  
+   iv. Reply to reviews - Respond to customer reviews of gameplay venues.  
 
-5. SysAdmin (the user with the admin role if applicable):
-   i. Manage user access - Manage player and location accounts.
-   ii. Moderate services - Capability to edit and remove location and player information.
-   iii. Moderate reviews - Remove problematic reviews.
-   iv. View usage statistics - List view of locations, players, and associated groups for each.
+5. SysAdmin (the user with the admin role if applicable):  
+   i. Manage user access - Manage player and location accounts.  
+   ii. Moderate services - Capability to edit and remove location and player information.  
+   iii. Moderate reviews - Remove problematic reviews.  
+   iv. View usage statistics - List view of locations, players, and associated groups for each.  
