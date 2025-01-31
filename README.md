@@ -1,22 +1,22 @@
 ## Title
-> Looking 4 Games (L4G)
+Looking 4 Games (L4G)
 
 ## Team Members
-> Carlos Taylor, Veronica Nahser, Carter Gibb  
+Carlos Taylor, Veronica Nahser, Carter Gibb  
 
 ## Description  
-> Looking 4 Games (L4G) is an application designed to connect DND players, Dungeon Masters (DMs), and gaming venues to facilitate in-person gaming sessions. The platform enables players to find and join groups, while venues can promote available gameplay spaces.  
->  
-> L4G serves as a hub where like-minded individuals can form gaming communities and interact in an environment enriched with associated media and merchandise. It fosters a judgment-free zone where businesses and players can connect, building communities beyond simple transactions.  
->  
-> **Target Audience:**  
-> - New DND players looking for a welcoming group.  
-> - Experienced players seeking a new gaming community.  
-> - Dungeon Masters wanting to find committed players for their campaigns.  
-> - Business venues (e.g., card shops, bookstores, game cafés) that wish to host DND events and attract new customers.  
->  
-> **Problem Statement:**  
-> There is no centralized or efficient way for tabletop gamers to find local groups, campaigns, or venues that support in-person play. L4G bridges this gap by organizing players and locations in one place, simplifying the process of finding games, hosting events, and meeting new people.  
+Looking 4 Games (L4G) is an application designed to connect DND players, Dungeon Masters (DMs), and gaming venues to facilitate in-person gaming sessions. The platform enables players to find and join groups, while venues can promote available gameplay spaces.  
+ 
+L4G serves as a hub where like-minded individuals can form gaming communities and interact in an environment enriched with associated media and merchandise. It fosters a judgment-free zone where businesses and players can connect, building communities beyond simple transactions.  
+ 
+**Target Audience:**  
+- New DND players looking for a welcoming group.  
+- Experienced players seeking a new gaming community.  
+- Dungeon Masters wanting to find committed players for their campaigns.  
+- Business venues (e.g., card shops, bookstores, game cafés) that wish to host DND events and attract new customers.  
+ 
+**Problem Statement:**  
+There is no centralized or efficient way for tabletop gamers to find local groups, campaigns, or venues that support in-person play. L4G bridges this gap by organizing players and locations in one place, simplifying the process of finding games, hosting events, and meeting new people.  
 
 ## App Functions  
 1. Customer (the user with the customer role):
