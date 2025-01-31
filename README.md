@@ -1,4 +1,4 @@
-## Title
+## Project Name
 Looking 4 Games (L4G)
 
 ## Team Members
