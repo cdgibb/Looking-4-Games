@@ -4,15 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device.width, initial-scale 1.0" />
     <title>L4G</title>
+    <script src="venueScript.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <h1>Venue Homepage</h1>
   <!-- venue actions -->
-  <pre>
+  <body>
+    <ul class="tabs">
+      <li data-tab-target="#Home" class="active tab">Home</li>
+      <li data-tab-target="#Reviews" class="tab">Reviews</li>
+      <li data-tab-target="#Schedule" class="tab">Schedule</li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="Home" data-tab-content class="active">
+        <h1>Home</h1>
+        <pre>Displays business information of Venue</pre>
+      </div>
+
+      <div id="Reviews" data-tab-content>
+        <h1>Reviews</h1>
+        <pre>Displays list of venue reviews</pre>
+      </div>
+
+      <div id="Schedule" data-tab-content>
+        <h1>Schedule</h1>
+        <pre>displays dynamic schedule</pre>
+      </div>
+    </div>
+    <pre>
     table of venue actions to be done by Veronica
    </pre
-  >
-  <form action="login.html">
-    <input type="submit" value="Logout" />
-  </form>
+    >
+    <form action="login.html">
+      <input type="submit" value="Logout" />
+    </form>
+  </body>
 </html>
