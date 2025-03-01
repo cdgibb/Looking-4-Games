@@ -33,7 +33,8 @@ pre{
     margin: 0 0 0 -272;
 }
 .scrollbox {
-    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
     width: 1000px;
     height: 200px;
     overflow: scroll;
