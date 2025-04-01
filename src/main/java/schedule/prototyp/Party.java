@@ -30,42 +30,44 @@ public class Party {
     //scheduleId
     private int scheduleId;
 
-    @ManyToOne
-    @JoinColumn(name = "")
-    //private ????/????;
-
     @Column(nullable = false)
     private int capacity;
-
-    @Column(nullable = false)
     private String name;
-
-    //day
-    @Column(nullable = false)
     private String day;
+    private int startTime;
+    private int endTime;
 
-    //time
-    @Column(nullable = false)
-    private int time;
 
     public Party() { }
 
-    public Party(int venueId, int scheduleId, String day, int time, int capacity) {
+    public Party(int venueId, int scheduleId, String day, int startTime, int endTime, int capacity) {
         this.venueId = venueId;
         this.scheduleId = scheduleId;
         this.day = day;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.capacity = capacity;
     }
 
-    public int getPartyId() {return partyId; }
+    public int getPartyId() { return partyId;}
+
+    public int getVenueId() { return venueId;}
+
+    public int getScheduleId() { return scheduleId;}
 
     public String getNme() { return name;}
     public void setName(String name) {this.name = name;}
+
     public int getCapacity() {return capacity;}
     public void setCapacity(int capacity) {this.capacity = capacity;}
+
     public String getDay() {return day;}
-    public int getTime() {return time;}
+    public int getStartTime() {return startTime;}
+    public int getEndTime() {return endTime;}
+
+    /**
+     * this doesn't need any way to directly reference the players in it, right?
+     */
 
     /**
     @Override

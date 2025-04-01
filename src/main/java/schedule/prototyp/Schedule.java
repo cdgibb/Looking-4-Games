@@ -31,16 +31,25 @@ public class Schedule {
     @Override@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int scheduleId;
 
-    private int venueId;
-
     @Column(nullable = false)
+    private int venueId;
     private String day;
-    private int time;
-
+    private int startTime;
+    private int endTime;
     private Party party;
 
 
     public Schedule() {
 
     }
+
+    public Schedule(int venueId, String day, int startTime, int endTime, Party party){
+        this.venueId = venueId;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.party = party;
+    }
+
+
 }
