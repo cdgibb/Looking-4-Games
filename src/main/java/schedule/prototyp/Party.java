@@ -3,7 +3,7 @@ package schedule.prototyp;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "")
+@Table(name = "parties")
 
 /**
  * the "party" is a container that inherits a venue id, schedule id, day, and time from the schedule object that

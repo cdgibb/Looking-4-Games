@@ -28,15 +28,17 @@ public class Schedule {
 
     //scheduleId
     @Id
-    @Override@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int scheduleId;
+
+    private Party party;
 
     @Column(nullable = false)
     private int venueId;
     private String day;
     private int startTime;
     private int endTime;
-    private Party party;
+
 
 
     public Schedule() {
@@ -52,4 +54,45 @@ public class Schedule {
     }
 
 
+    /**
+     * all values should be initialized the first time the schedule is created
+     * only the party and start/end times should be able to be modified afterwards
+     * @return
+     */
+
+    public int getScheduleId() {
+        return scheduleId;
+    }
+
+    public int getVenueId() {
+        return venueId;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public int getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
+
+    public int getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
+    }
+
+    public Party getParty() {
+        return party;
+    }
+
+    public void setParty(Party party) {
+        this.party = party;
+    }
 }

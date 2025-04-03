@@ -18,20 +18,20 @@ public class Venue {
     private String venueEmail;
     private String venuePassword;
     private int venueCapacity;
-    private int startMon;
-    private int endMon;
-    private int startTue;
-    private int endTue;
-    private int startWed;
-    private int endWed;
-    private int startThu;
-    private int endThu;
-    private int startFri;
-    private int endFri;
-    private int startSat;
-    private int endSat;
-    private int startSun;
-    private int endSun;
+    private int venueOpen;
+    private int venueClose;
+    private boolean monday;
+    private boolean tuesday;
+    private boolean wednesday;
+    private boolean thursday;
+    private boolean friday;
+    private boolean saturday;
+    private boolean sunday;
+    //i think the correct thing would be to make a Day class that just holds a boolean value
+    //and then make a Day object for each day of the week so that they can be called at once as a table
+    //but i don't know what kind of consequences that would have if you tried to make a table of all days
+    //because it would probably see every day created by every venue
+
 
 
     public Venue(String venueName, String venueAddress, String venueBio, String venueEmail, String venuePassword, int venueCapacity){
@@ -97,116 +97,76 @@ public class Venue {
         this.venueCapacity = venueCapacity;
     }
 
-    public int getStartMon() {
-        return startMon;
+    public int getVenueOpen() {
+        return venueOpen;
     }
 
-    public int getEndMon() {
-        return endMon;
+    public void setVenueOpen(int venueOpen) {
+        this.venueOpen = venueOpen;
     }
 
-    public void setStartMon(int startMon) {
-        this.startMon = startMon;
+    public int getVenueClose() {
+        return venueClose;
     }
 
-    public void setEndMon(int endMon) {
-        this.endMon = endMon;
+    public void setVenueClose(int venueClose) {
+        this.venueClose = venueClose;
     }
 
-    public int getStartTue() {
-        return startTue;
+    public boolean isMonday() {
+        return monday;
     }
 
-    public int getEndTue() {
-        return endTue;
+    public boolean isTuesday() {
+        return tuesday;
     }
 
-    public void setStartTue(int startTue) {
-        this.startTue = startTue;
+    public boolean isWednesday() {
+        return wednesday;
     }
 
-    public void setEndTue(int endTue) {
-        this.endTue = endTue;
+    public boolean isThursday() {
+        return thursday;
     }
 
-    public int getStartWed() {
-        return startWed;
+    public boolean isFriday() {
+        return friday;
     }
 
-    public int getEndWed() {
-        return endWed;
+    public boolean isSaturday() {
+        return saturday;
     }
 
-    public void setStartWed(int startWed) {
-        this.startWed = startWed;
+    public boolean isSunday() {
+        return sunday;
     }
 
-    public void setEndWed(int endWed) {
-        this.endWed = endWed;
+    public void setMonday(boolean monday) {
+        this.monday = monday;
     }
 
-    public int getStartThu() {
-        return startThu;
+    public void setTuesday(boolean tuesday) {
+        this.tuesday = tuesday;
     }
 
-    public int getEndThu() {
-        return endThu;
+    public void setWednesday(boolean wednesday) {
+        this.wednesday = wednesday;
     }
 
-    public void setStartThu(int startThu) {
-        this.startThu = startThu;
+    public void setThursday(boolean thursday) {
+        this.thursday = thursday;
     }
 
-    public void setEndThu(int endThu) {
-        this.endThu = endThu;
+    public void setFriday(boolean friday) {
+        this.friday = friday;
     }
 
-    public int getStartFri() {
-        return startFri;
+    public void setSaturday(boolean saturday) {
+        this.saturday = saturday;
     }
 
-    public int getEndFri() {
-        return endFri;
-    }
-
-    public void setStartFri(int startFri) {
-        this.startFri = startFri;
-    }
-
-    public void setEndFri(int endFri) {
-        this.endFri = endFri;
-    }
-
-    public int getStartSat() {
-        return startSat;
-    }
-
-    public int getEndSat() {
-        return endSat;
-    }
-
-    public void setStartSat(int startSat) {
-        this.startSat = startSat;
-    }
-
-    public void setEndSat(int endSat) {
-        this.endSat = endSat;
-    }
-
-    public int getStartSun() {
-        return startSun;
-    }
-
-    public int getEndSun() {
-        return endSun;
-    }
-
-    public void setStartSun(int startSun) {
-        this.startSun = startSun;
-    }
-
-    public void setEndSun(int endSun) {
-        this.endSun = endSun;
+    public void setSunday(boolean sunday) {
+        this.sunday = sunday;
     }
 
     /**
