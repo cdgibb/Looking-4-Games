@@ -14,9 +14,9 @@ public class Schedule {
      * never be allowed to delete any part of itself. the SCHEDULE
      * is defined by the business hours of the venue and its elements
      * are CONTAINERS for Parties, not JUST party objects.
-     * Yes it's possible for a schedule to populate with 168 elements
-     * but this is CORRECT behavior, representing the maximum number
-     * of 1-hour segments in a 7 day week
+     * i wish there were a better day to organize things by day but
+     * i can't figure it out in a way that makes sense or even makes
+     * things easier
      */
 
     /**
@@ -28,19 +28,71 @@ public class Schedule {
 
     //scheduleId
     @Id
-    @Override@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int scheduleId;
 
-    private int venueId;
+    private Party party;
 
     @Column(nullable = false)
+    private int venueId;
     private String day;
-    private int time;
+    private int startTime;
+    private int endTime;
 
-    private Party party;
 
 
     public Schedule() {
 
+    }
+
+    public Schedule(int venueId, String day, int startTime, int endTime, Party party){
+        this.venueId = venueId;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.party = party;
+    }
+
+
+    /**
+     * all values should be initialized the first time the schedule is created
+     * only the party and start/end times should be able to be modified afterwards
+     * @return
+     */
+
+    public int getScheduleId() {
+        return scheduleId;
+    }
+
+    public int getVenueId() {
+        return venueId;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public int getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
+
+    public int getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
+    }
+
+    public Party getParty() {
+        return party;
+    }
+
+    public void setParty(Party party) {
+        this.party = party;
     }
 }
