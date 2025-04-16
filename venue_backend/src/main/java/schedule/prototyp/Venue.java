@@ -13,15 +13,36 @@ public class Venue {
 
     @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false);
     private String address;
 
-    @ManyToMany
-    @JoinColumn(name = "partyId")
-    private Party party;
 
     //constructors
 
 
+    public Venue() {}
+
+    public Venue(String name, String address)    {
+        this.name = name;
+        this.address = address;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getVenueId() {
+        return venueId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

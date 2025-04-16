@@ -1,5 +1,12 @@
 package schedule.prototyp;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/venues")
 
@@ -13,6 +20,7 @@ public class VenueController {
 
     @GetMapping("/all")
     public Object getAllVenues(Model model) {
+        //return new ResponseEntity<>(venueService.getAllVenues(), HttpStatus.OK);
         model.addAttribute("venueList", venueService.getAllVenues());
         model.addAttribute("title", "All Venues");
         return "venue-list";
@@ -25,9 +33,30 @@ public class VenueController {
         return "venue-list";
     }
 
-    @GetMapping("/parties")
-    public Object get
+    @GetMapping("/parties/{venueId}")
+    public Object getPartiesByVenue(@PathVariable int venueId, Model model){
+        model.addAttribute("partyList", partyService.getPartiesByVenue(venueId));
+        return "party-list";
+    }
 //post new venue
+    @GetMapping("/createVenue")
+    public Object createVenue(Model model){
+        Venue newVenue = new Venue();
+        model.addAttribute("venue", newVenue);
+        model.addAttribute("title", "Regster a Venue");
+        return "venue-create";
+    }
+    @PostMapping("/createVenue")
+    public Object createVenue(Venue newVenue, Model model){
+        venueService.addNewVenue(newVenue);
+        return "redirect:/venues/{newVenue.venueId}";
+    }
+
+    @GetMapping("/update/{venueId}")
+    public Object updateVenue(@PathVariable int venueId, Model model){
+        model.addAttribute("venue", venueService.getVenueById(venueId));
+        return "venue-update";
+    }
 
 //put modify venue profile
 

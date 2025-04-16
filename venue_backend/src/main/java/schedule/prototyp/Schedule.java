@@ -26,10 +26,10 @@ public class Schedule {
      * deleting a party is likewise a put command
      */
 
-    //scheduleId
+    //timeslotId
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int scheduleId;
+    private int timeslotId;
 
     private Party party;
 
@@ -60,8 +60,8 @@ public class Schedule {
      * @return
      */
 
-    public int getScheduleId() {
-        return scheduleId;
+    public int getTimeslotId() {
+        return timeslotId;
     }
 
     public int getVenueId() {
