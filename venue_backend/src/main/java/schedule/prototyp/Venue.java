@@ -14,16 +14,21 @@ public class Venue {
     @Column(nullable = false)
     private String name;
     private String address;
-
+    private String email;
+    private int openTime;
+    private int closeTime;
 
     //constructors
 
 
     public Venue() {}
 
-    public Venue(String name, String address)    {
+    public Venue(String name, String address, String email, int openTime, int closeTime)    {
         this.name = name;
         this.address = address;
+        this.email = email;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
     }
 
     public String getName(){
@@ -44,5 +49,95 @@ public class Venue {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getOpenTime() {
+        return openTime;
+    }
+
+    public void setOpenTime(int openTime) {
+        this.openTime = openTime;
+    }
+
+    public int getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(int closeTime) {
+        this.closeTime = closeTime;
+    }
+
+    public void generateSchedule(int openTime, int closeTime){
+        int monCarrier = openTime;
+        int tueCarrier = openTime;
+        int wedCarrier = openTime;
+        int thuCarrier = openTime;
+        int friCarrier = openTime;
+        int satCarrier = openTime;
+        int sunCarrier = openTime;
+        for(int i = openTime; i > closeTime; ++){
+            Schedule newSchedule = new Schedule();
+            newSchedule.setStartTime(monCarrier);
+            newSchedule.setEndTime(monCarrier+1);
+            newSchedule.setDay("Monday");
+            newSchedule.setVenueId(venueId);
+            monCarrier++;
+        }
+        for(int i = openTime; i > closeTime; ++){
+            Schedule newSchedule = new Schedule();
+            newSchedule.setStartTime(tueCarrier);
+            newSchedule.setEndTime(tueCarrier+1);
+            newSchedule.setDay("Tuesday");
+            newSchedule.setVenueId(venueId);
+            tueCarrier++;
+        }
+        for(int i = openTime; i > closeTime; ++){
+            Schedule newSchedule = new Schedule();
+            newSchedule.setStartTime(wedCarrier);
+            newSchedule.setEndTime(wedCarrier+1);
+            newSchedule.setDay("Wednesday");
+            newSchedule.setVenueId(venueId);
+            wedCarrier++;
+        }
+        for(int i = openTime; i > closeTime; ++){
+            Schedule newSchedule = new Schedule();
+            newSchedule.setStartTime(thuCarrier);
+            newSchedule.setEndTime(thuCarrier+1);
+            newSchedule.setDay("Thursday");
+            newSchedule.setVenueId(venueId);
+            thuCarrier++;
+        }
+        for(int i = openTime; i > closeTime; ++){
+            Schedule newSchedule = new Schedule();
+            newSchedule.setStartTime(friCarrier);
+            newSchedule.setEndTime(friCarrier+1);
+            newSchedule.setDay("Friday");
+            newSchedule.setVenueId(venueId);
+            friCarrier++;
+        }
+        for(int i = openTime; i > closeTime; ++){
+            Schedule newSchedule = new Schedule();
+            newSchedule.setStartTime(satCarrier);
+            newSchedule.setEndTime(satCarrier+1);
+            newSchedule.setDay("Saturday");
+            newSchedule.setVenueId(venueId);
+            satCarrier++;
+        }
+        for(int i = openTime; i > closeTime; ++){
+            Schedule newSchedule = new Schedule();
+            newSchedule.setStartTime(sunCarrier);
+            newSchedule.setEndTime(sunCarrier+1);
+            newSchedule.setDay("Sunday");
+            newSchedule.setVenueId(venueId);
+            sunCarrier++;
+        }
     }
 }

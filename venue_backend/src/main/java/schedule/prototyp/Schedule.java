@@ -68,8 +68,16 @@ public class Schedule {
         return venueId;
     }
 
+    public void setVenueId(int venueId) {
+        this.venueId = venueId;
+    }
+
     public String getDay() {
         return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public int getStartTime() {

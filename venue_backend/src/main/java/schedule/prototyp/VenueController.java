@@ -1,12 +1,10 @@
 package schedule.prototyp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+
 @Controller
 @RequestMapping("/venues")
 
@@ -48,7 +46,8 @@ public class VenueController {
     }
     @PostMapping("/createVenue")
     public Object createVenue(Venue newVenue, Model model){
-        venueService.addNewVenue(newVenue);
+        venueService.createVenue(newVenue);
+        newVenue.generateSchedule(newVenue.getOpenTime(), newVenue.getCloseTime());
         return "redirect:/venues/{newVenue.venueId}";
     }
 
@@ -57,6 +56,19 @@ public class VenueController {
         model.addAttribute("venue", venueService.getVenueById(venueId));
         return "venue-update";
     }
+    @PostMapping("/update/{venueId}")
+    public Object updateVenue(@PathVariable int venueId, Venue venue){
+        venueService.updateVenue(venueId, venue);
+        return "redirect:/venues/{venue.venueId}";
+    }
+
+    @GetMapping("/delete/{venueId}")
+    public Object deleteVenueById(@PathVariable int venueId){
+        venueService.deleteVenueById(venueId);
+        return "redirect:/login";
+    }
+
+
 
 //put modify venue profile
 
