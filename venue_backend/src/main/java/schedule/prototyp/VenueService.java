@@ -11,8 +11,8 @@ public class VenueService {
 
     public List<Venue> getAllVenues()   {   return venueRepository.findAll();   }
 
-    public Venue getVenueById(int venueId){ return venueRepository.findById(venueId).orElse(null)}
-
+    public Venue getVenueById(int venueId){ return venueRepository.findById(venueId).orElse(null);}
+    public void deleteVenueById(int venueId){ venueRepository.deleteById(venueId);}
     public void createVenue(Venue newVenue) {venueRepository.save(newVenue);}
 
     public void updateVenue(int venueId, Venue venue){
@@ -22,5 +22,7 @@ public class VenueService {
         existing.setEmail(venue.getEmail());
         existing.setOpenTime(venue.getOpenTime());
         existing.setCloseTime(venue.getCloseTime());
+        //allowing venues to update their hours of operation may have weird consequences for schedules and parties but i
+        //don't want to think about that right now
     }
 }

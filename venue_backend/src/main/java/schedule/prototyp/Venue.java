@@ -64,6 +64,7 @@ public class Venue {
     }
 
     public void setOpenTime(int openTime) {
+        //potentially add error checking so that things don't break if openTime > closeTime
         this.openTime = openTime;
     }
 
@@ -72,72 +73,74 @@ public class Venue {
     }
 
     public void setCloseTime(int closeTime) {
+        //close time must be no greater than 24
         this.closeTime = closeTime;
     }
 
     public void generateSchedule(int openTime, int closeTime){
-        int monCarrier = openTime;
-        int tueCarrier = openTime;
-        int wedCarrier = openTime;
-        int thuCarrier = openTime;
-        int friCarrier = openTime;
-        int satCarrier = openTime;
-        int sunCarrier = openTime;
-        for(int i = openTime; i > closeTime; ++){
+//        int monCarrier = openTime;
+//        int tueCarrier = openTime;
+//        int wedCarrier = openTime;
+//        int thuCarrier = openTime;
+//        int friCarrier = openTime;
+//        int satCarrier = openTime;
+//        int sunCarrier = openTime;
+//        it wasn't working for some reason but i fixed it
+        for(int i = openTime; i < closeTime; i++){
             Schedule newSchedule = new Schedule();
-            newSchedule.setStartTime(monCarrier);
-            newSchedule.setEndTime(monCarrier+1);
+            newSchedule.setStartTime(i);
+            newSchedule.setEndTime(i+1);
             newSchedule.setDay("Monday");
             newSchedule.setVenueId(venueId);
-            monCarrier++;
+            //monCarrier++;
         }
-        for(int i = openTime; i > closeTime; ++){
+        for(int i = openTime; i < closeTime; i++){
             Schedule newSchedule = new Schedule();
-            newSchedule.setStartTime(tueCarrier);
-            newSchedule.setEndTime(tueCarrier+1);
+            newSchedule.setStartTime(i);
+            newSchedule.setEndTime(i+1);
             newSchedule.setDay("Tuesday");
             newSchedule.setVenueId(venueId);
-            tueCarrier++;
+            //tueCarrier++;
         }
-        for(int i = openTime; i > closeTime; ++){
+        for(int i = openTime; i < closeTime; i++){
             Schedule newSchedule = new Schedule();
-            newSchedule.setStartTime(wedCarrier);
-            newSchedule.setEndTime(wedCarrier+1);
+            newSchedule.setStartTime(i);
+            newSchedule.setEndTime(i+1);
             newSchedule.setDay("Wednesday");
             newSchedule.setVenueId(venueId);
-            wedCarrier++;
+            //wedCarrier++;
         }
-        for(int i = openTime; i > closeTime; ++){
+        for(int i = openTime; i < closeTime; i++){
             Schedule newSchedule = new Schedule();
-            newSchedule.setStartTime(thuCarrier);
-            newSchedule.setEndTime(thuCarrier+1);
+            newSchedule.setStartTime(i);
+            newSchedule.setEndTime(i+1);
             newSchedule.setDay("Thursday");
             newSchedule.setVenueId(venueId);
-            thuCarrier++;
+            //thuCarrier++;
         }
-        for(int i = openTime; i > closeTime; ++){
+        for(int i = openTime; i < closeTime; i++){
             Schedule newSchedule = new Schedule();
-            newSchedule.setStartTime(friCarrier);
-            newSchedule.setEndTime(friCarrier+1);
+            newSchedule.setStartTime(i);
+            newSchedule.setEndTime(i+1);
             newSchedule.setDay("Friday");
             newSchedule.setVenueId(venueId);
-            friCarrier++;
+            //friCarrier++;
         }
-        for(int i = openTime; i > closeTime; ++){
+        for(int i = openTime; i < closeTime; i++){
             Schedule newSchedule = new Schedule();
-            newSchedule.setStartTime(satCarrier);
-            newSchedule.setEndTime(satCarrier+1);
+            newSchedule.setStartTime(i);
+            newSchedule.setEndTime(i+1);
             newSchedule.setDay("Saturday");
             newSchedule.setVenueId(venueId);
-            satCarrier++;
+            //satCarrier++;
         }
-        for(int i = openTime; i > closeTime; ++){
+        for(int i = openTime; i < closeTime; i++){
             Schedule newSchedule = new Schedule();
-            newSchedule.setStartTime(sunCarrier);
-            newSchedule.setEndTime(sunCarrier+1);
+            newSchedule.setStartTime(i);
+            newSchedule.setEndTime(i+1);
             newSchedule.setDay("Sunday");
             newSchedule.setVenueId(venueId);
-            sunCarrier++;
+            //sunCarrier++;
         }
     }
 }

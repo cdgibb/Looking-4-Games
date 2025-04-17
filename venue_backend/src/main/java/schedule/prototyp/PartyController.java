@@ -1,11 +1,11 @@
 package schedule.prototyp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-@RestController
-@RequestMapping("/parties")
+import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
+@Controller
+@RequestMapping("/{venueId}/parties")
 public class PartyController {
 
     @Autowired
@@ -22,27 +22,27 @@ public class PartyController {
      * there's no need to have access to *all* parties, only all parties at a venue
      */
 
-    @GetMapping("/{venueId}/parties/all")
-    public Object getAllParties(@PathVariable int venueId){
+    @GetMapping("/all")
+    public Object getAllParties(@PathVariable int venueId, Model model){
         //this needs to be able to reference the venueId
-        return new ResponseEntity<>(partyService.getAllParties(), HttpStatus.OK);
+        //return new ResponseEntity<>(partyService.getAllParties(), HttpStatus.OK);
     }
     /**
      * this needs to be limited to parties at the venue calling the method
      * @param day
      * @return
      */
-    @GetMapping("/{venueId}/parties/{day}")
-    public Object getPartiesByDay(@PathVariable int venueId, @PathVariable String day){
+    @GetMapping("/{day}")
+    public Object getPartiesByDay(@PathVariable int venueId, @PathVariable String day, Model model){
         //needs reference to venue by id
-        return new ResponseEntity<>(partyService.getPartiesByDay(day), HttpStatus.OK);
+        //return new ResponseEntity<>(partyService.getPartiesByDay(day), HttpStatus.OK);
     }
 
-    @PostMapping("/{venueId}/new")
-    public Object addNewParty(@PathVariable Party party){
+    @GetMapping("/new")
+    public Object createParty(@PathVariable int venueId, Model model){
         //needs reference to venue by id
-        partyService.addNewParty(party);
-        return new ResponseEntity<>(partyService.getAllParties(), HttpStatus.OK);
+        //partyService.createParty(party);
+        //return new ResponseEntity<>(partyService.getAllParties(), HttpStatus.OK);
     }
     //public Object newParty(@PathVariable)
 }
