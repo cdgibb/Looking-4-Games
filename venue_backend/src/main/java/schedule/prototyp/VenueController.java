@@ -31,6 +31,12 @@ public class VenueController {
         return "venue-list";
     }
 
+    @GetMapping("/{venueId}")
+    public Object getVenueById(@PathVariable int venueId, Model model){
+        model.addAttribute("venue", venueService.getVenueById(venueId));
+        return "venue-home";
+    }
+
     @GetMapping("/parties/{venueId}")
     public Object getPartiesByVenue(@PathVariable int venueId, Model model){
         model.addAttribute("partyList", partyService.getPartiesByVenue(venueId));

@@ -25,4 +25,8 @@ public class VenueService {
         //allowing venues to update their hours of operation may have weird consequences for schedules and parties but i
         //don't want to think about that right now
     }
+
+    public Object getVenuesByName(String search) {
+        return venueRepository.getVenuesByName(search);
+    }
 }

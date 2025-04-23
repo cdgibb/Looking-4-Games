@@ -26,6 +26,7 @@ public class PartyController {
     public Object getAllParties(@PathVariable int venueId, Model model){
         //this needs to be able to reference the venueId
         //return new ResponseEntity<>(partyService.getAllParties(), HttpStatus.OK);
+        return "party-list";
     }
     /**
      * this needs to be limited to parties at the venue calling the method
@@ -36,6 +37,7 @@ public class PartyController {
     public Object getPartiesByDay(@PathVariable int venueId, @PathVariable String day, Model model){
         //needs reference to venue by id
         //return new ResponseEntity<>(partyService.getPartiesByDay(day), HttpStatus.OK);
+        return "party-list";
     }
 
     @GetMapping("/new")
@@ -43,6 +45,7 @@ public class PartyController {
         //needs reference to venue by id
         //partyService.createParty(party);
         //return new ResponseEntity<>(partyService.getAllParties(), HttpStatus.OK);
+        return "party-list";
     }
     //public Object newParty(@PathVariable)
 }

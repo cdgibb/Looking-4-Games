@@ -4,10 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+//import java.lang.ScopedValue;
 import java.util.List;
 
-public interface VenueRepository extends JpaRepository<Venue, Integer>{
+public interface ScheduleRepository extends JpaRepository<Schedule, Integer>{
 
 
-    Object getVenuesByName(String search);
+    List<Schedule> findAllByDay(String day);
 }
+//public interface ScheduleRepository {
+//}
