@@ -5,20 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L4G - View Venues/Games</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #auth-container {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #auth-btn {
+      padding: 6px 12px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #auth-btn:hover {
+      background-color: #666;
+    }
+  </style>
 </head>
 <body>
+
 <header>
   <h1>Available Venues &amp; Games</h1>
+
+  <!-- Auth Button (Login or Logout) -->
+  <div id="auth-container">
+    <button id="auth-btn">Login</button>
+  </div>
 </header>
 
 <nav>
   <ul>
+    <li><a href="playerHome.html">Home/Profile</a></li>
+    <li><a href="ViewVenueGamesX.html" class="active">View Venues/Games</a></li>
 
-      <li><a href="playerHome.html">Home/Profile</a></li>
-      <li><a href="ModifyCreateProfileX.html" class="active">Modify/Create Profile</a></li>
-      <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-      <li><a href="RSVPX.html">RSVP for Event</a></li>
-      <li><a href="WriteReviewX.html">Write a Review</a></li>
 
   </ul>
 </nav>
@@ -33,7 +57,7 @@
       <p><strong>Address:</strong> 123 Main St</p>
       <p><strong>Hours:</strong> 10:00 AM - 10:00 PM</p>
       <p><strong>Capacity:</strong> 40 Players</p>
-      <p><strong>Game Session:</strong> Dungeons &amp; Dragons</p>
+      <p><strong>Game Session:</strong> Dungeons & Dragons</p>
       <div class="actions">
         <a href="RSVPX.html"><button type="button">RSVP</button></a>
         <a href="WriteReviewX.html"><button type="button">Write Review</button></a>
@@ -52,15 +76,33 @@
         <a href="WriteReviewX.html"><button type="button">Write Review</button></a>
       </div>
     </div>
-
-    <!-- Additional venue cards can be added similarly -->
   </section>
 </main>
 
-<footer>
-  <form action="login.html">
-    <input type="submit" value="Logout" />
-  </form>
-</footer>
+<footer></footer>
+
+<!-- Auth Button Logic Only -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const authBtn = document.getElementById("auth-btn");
+    const playerJSON = localStorage.getItem("player");
+
+    if (playerJSON) {
+      // Logged in → show logout
+      authBtn.textContent = "Logout";
+      authBtn.addEventListener("click", () => {
+        localStorage.removeItem("player");
+        alert("You have been logged out.");
+        window.location.href = "login.html";
+      });
+    } else {
+      // Not logged in → show login
+      authBtn.textContent = "Login";
+      authBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+    }
+  });
+</script>
 </body>
 </html>

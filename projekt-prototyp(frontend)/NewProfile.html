@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L4G - Create Profile</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+    <h1>Create a New Profile</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="login.html">Back to Login</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section>
+        <h2>Register Your Account</h2>
+        <form id="profile-form">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required />
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+
+            <div>
+                <label for="bio">Short Bio:</label>
+                <textarea id="bio" name="bio" required></textarea>
+            </div>
+
+            <div>
+                <label for="location">Location Preferences:</label>
+                <input type="text" id="location" name="location" />
+            </div>
+
+            <div>
+                <label for="distance">Distance Willing to Travel (miles):</label>
+                <input type="number" id="distance" name="distance" required min="0" step="0.1" />
+            </div>
+
+            <div>
+                <label for="gaming-interests">Gaming Interests:</label>
+                <textarea
+                        id="gaming-interests"
+                        name="gaming-interests"
+                        rows="4"
+                        placeholder="Enter your gaming interests here..."
+                ></textarea>
+            </div>
+
+            <div>
+                <button type="submit">Create Profile</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer></footer>
+
+<!-- Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileForm = document.getElementById("profile-form");
+
+        profileForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const playerData = {
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                bio: document.getElementById("bio").value,
+                location: document.getElementById("location").value,
+                preferredGameStyle: document.getElementById("gaming-interests").value,
+                distanceWillingToTravel: parseFloat(document.getElementById("distance").value),
+                roleType: "Customer",
+                status: "active",
+                availableTimes: [],
+                activeGamesIds: [],
+                reviewsWritten: [],
+                recentEventsAttended: [],
+                createdAt: new Date()
+            };
+
+            try {
+                const response = await fetch("http://localhost:8080/players/new", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(playerData)
+                });
+
+                if (!response.ok) throw new Error("Profile creation failed");
+
+                const savedPlayer = await response.json();
+                localStorage.setItem("player", JSON.stringify(savedPlayer));
+
+                alert("Welcome, " + savedPlayer.username + "! Your profile has been created.");
+                window.location.href = "playerHome.html";
+            } catch (error) {
+                console.error("Error:", error);
+                alert("There was a problem creating your profile.");
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -5,21 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fda50d1-c15e-4a05-8f4d-865630ea2dff" name="Changes" comment="testing commit through intellij">
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/ModifyCreateProfileX.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/RSVPX.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/ViewVenueGamesX.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/WriteReviewX.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/adminHome.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/img/empty-lot.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/img/local-store-pfp-placeholder.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/img/schedule-frame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/playerHome.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../projekt-prototyp/venueHome.html" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../player(backend)/src/main/java/com/looking4games/player/config/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NewProfile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModifyCreateProfileX.html" beforeDir="false" afterPath="$PROJECT_DIR$/ModifyCreateProfileX.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSVPX.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSVPX.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewVenueGamesX.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewVenueGamesX.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WriteReviewX.html" beforeDir="false" afterPath="$PROJECT_DIR$/WriteReviewX.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/playerHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cataylor5&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cdgibb/Looking-4-Games.git&quot;,
+    &quot;accountId&quot;: &quot;6962426a-1e97-42ff-94a3-89268003d4dc&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -47,18 +55,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.ModifyCreateProfileX.html.executor": "Run",
+    "JavaScript Debug.NewProfile.html.executor": "Run",
+    "JavaScript Debug.RSVPX.html.executor": "Run",
+    "JavaScript Debug.ViewVenueGamesX.html.executor": "Run",
+    "JavaScript Debug.WriteReviewX.html.executor": "Run",
     "JavaScript Debug.login.html.executor": "Run",
+    "JavaScript Debug.playerHome.html.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "Carlos-Player-Functionality",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Carlos Taylor/Desktop/CSC 340/Group Project/Looking-4-Games/player(backend)",
+    "last_opened_file_path": "C:/Users/Carlos Taylor/Desktop/CSC 340/Group Project/Looking-4-Games/projekt-prototyp(frontend)",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -97,6 +112,9 @@
       <workItem from="1741103509001" duration="3041000" />
       <workItem from="1741111120414" duration="2353000" />
       <workItem from="1743514040213" duration="489000" />
+      <workItem from="1743516291027" duration="3168000" />
+      <workItem from="1745519277188" duration="10821000" />
+      <workItem from="1746292994695" duration="2014000" />
     </task>
     <task id="LOCAL-00001" summary="testing commit through intellij">
       <option name="closed" value="true" />

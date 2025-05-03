@@ -5,102 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L4G - Player Homepage</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #auth-container {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #auth-btn {
+      padding: 6px 12px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #auth-btn:hover {
+      background-color: #666;
+    }
+
+    .edit-profile {
+      margin-top: 10px;
+    }
+
+    .edit-profile button {
+      background-color: #0077cc;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .edit-profile button:hover {
+      background-color: #005fa3;
+    }
+  </style>
 </head>
 <body>
+
 <header>
   <h1>Player Homepage</h1>
+  <div id="auth-container">
+    <button id="auth-btn">Login</button>
+  </div>
 </header>
 
 <nav>
   <ul>
-    <li><a href="playerHome.html">Home/Profile</a></li>
-    <li><a href="ModifyCreateProfileX.html" class="active">Modify/Create Profile</a></li>
+    <li><a href="playerHome.html" class="active">Home/Profile</a></li>
     <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-    <li><a href="RSVPX.html">RSVP for Event</a></li>
-    <li><a href="WriteReviewX.html">Write a Review</a></li>
   </ul>
 </nav>
 
 <main>
-  <!-- Player Actions Section -->
   <section>
-    <h2>Player Actions</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Action</th>
-        <th>Description</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><a href="ModifyCreateProfileX.html">Modify/Create Profile</a></td>
-        <td>Update or create your user profile details.</td>
-      </tr>
-      <tr>
-        <td><a href="ViewVenueGamesX.html">View Venues/Games</a></td>
-        <td>Browse available venues and gaming sessions.</td>
-      </tr>
-      <tr>
-        <td><a href="RSVPX.html">RSVP for Event</a></td>
-        <td>Sign up for an event or game session.</td>
-      </tr>
-      <tr>
-        <td><a href="WriteReviewX.html">Write a Review</a></td>
-        <td>Submit feedback or a review for a venue/event.</td>
-      </tr>
-      </tbody>
-    </table>
-  </section>
+    <h2>Welcome, <span id="player-name">Player</span>!</h2>
 
-  <!-- Rudimentary Profile Section -->
-  <section id="profile-details">
-    <h2>My Profile</h2>
     <div class="profile-pic">
-      <img
-              src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
-              alt="Profile Picture"
-              width="150"
-      />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="Profile Picture" width="150" />
     </div>
+
+    <div class="edit-profile">
+      <button onclick="window.location.href='ModifyCreateProfileX.html'">Edit Profile</button>
+    </div>
+
     <div class="profile-info">
-      <p><strong>Name:</strong> Jimmy "Default" John</p>
-      <p>
-        <strong>Interests:</strong> I like to play this certain class/type
-        character when I play dnd
-      </p>
-      <p>
-        <strong>General Area Availability:</strong> greensboro/ winston salem
-        area
-      </p>
+      <p><strong>Name:</strong> <span id="username">...</span></p>
+      <p><strong>Bio:</strong> <span id="bio">...</span></p>
+      <p><strong>Location:</strong> <span id="location">...</span></p>
+      <p><strong>Distance Willing to Travel:</strong> <span id="distance">...</span> miles</p>
+      <p><strong>Interests:</strong> <span id="interests">...</span></p>
     </div>
-    <div class="friends-list">
-      <h3>Friends List</h3>
-      <ul>
-        <li>Alex Smith</li>
-        <li>Jamie Doe</li>
-        <li>Pat Taylor</li>
-        <li>Sam Jordan</li>
-        <li>Casey Lee</li>
+
+    <div class="recent-parties">
+      <h3>Recent Events Attended</h3>
+      <ul id="recent-events">
+        <!-- Will be filled dynamically -->
       </ul>
     </div>
+
     <div class="reviews-left">
       <h3>Reviews I've Left</h3>
-      <p>No reviews yet.</p>
-    </div>
-    <div class="recent-parties">
-      <h3>Recent Parties/Events I've Attended</h3>
-      <ul>
-        <li>Awesome Cards, Local Cardshop - 12/12/24</li>
-      </ul>
+      <p>(To be implemented...)</p>
     </div>
   </section>
 </main>
 
-<footer>
-  <form action="login.html">
-    <input type="submit" value="Logout" />
-  </form>
-</footer>
+<footer></footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const authBtn = document.getElementById("auth-btn");
+    const playerJSON = localStorage.getItem("player");
+
+    // Redirect if not logged in
+    if (!playerJSON) {
+      authBtn.textContent = "Login";
+      authBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+      alert("Please log in to access this page.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    const player = JSON.parse(playerJSON);
+
+    // Auth button logic
+    authBtn.textContent = "Logout";
+    authBtn.addEventListener("click", () => {
+      localStorage.removeItem("player");
+      alert("You have been logged out.");
+      window.location.href = "login.html";
+    });
+
+    // Populate basic profile info
+    document.getElementById("player-name").textContent = player.username;
+    document.getElementById("username").textContent = player.username;
+    document.getElementById("bio").textContent = player.bio || "No bio provided.";
+    document.getElementById("location").textContent = player.location || "Not specified.";
+    document.getElementById("interests").textContent = player.preferredGameStyle || "None listed.";
+    document.getElementById("distance").textContent = player.distanceWillingToTravel || "0";
+
+    // Recent events
+    const eventList = document.getElementById("recent-events");
+    if (player.recentEventsAttended?.length > 0) {
+      player.recentEventsAttended.forEach(event => {
+        const li = document.createElement("li");
+        li.textContent = event;
+        eventList.appendChild(li);
+      });
+    } else {
+      eventList.innerHTML = "<li>No recent events.</li>";
+    }
+
+    // Review venue map
+    const venueMap = {
+      1: "Dragon's Den",
+      2: "Wizard's Corner"
+    };
+
+    // Fetch and display reviews
+    try {
+      const res = await fetch(`http://localhost:8080/reviews/player/${player.playerId}`);
+      const reviews = await res.json();
+
+      const reviewsContainer = document.querySelector(".reviews-left");
+      reviewsContainer.innerHTML = "<h3>Reviews I've Left</h3>";
+
+      if (reviews.length === 0) {
+        reviewsContainer.innerHTML += "<p>No reviews yet.</p>";
+      } else {
+        reviews.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+
+        reviews.forEach(review => {
+          const venueName = venueMap[review.venueId] || "Unknown Venue";
+          const date = new Date(review.submittedAt).toLocaleDateString();
+
+          const div = document.createElement("div");
+          div.innerHTML = `
+            <p><strong>${venueName}</strong> | ⭐ ${review.rating} | ${date}</p>
+            <p>${review.reviewText}</p>
+            <hr />
+          `;
+          reviewsContainer.appendChild(div);
+        });
+      }
+    } catch (err) {
+      console.error("Review fetch error:", err);
+      const reviewsContainer = document.querySelector(".reviews-left");
+      reviewsContainer.innerHTML += "<p>Error loading reviews.</p>";
+    }
+  });
+</script>
+
 </body>
 </html>
