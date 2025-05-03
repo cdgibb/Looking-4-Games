@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L4G - RSVP for Event</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        #auth-container {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        #auth-btn {
+            padding: 6px 12px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #auth-btn:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>RSVP for Event</h1>
+    <div id="auth-container">
+        <button id="auth-btn">Login</button>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="playerHome.html">Home/Profile</a></li>
+        <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section>
+        <h2>RSVP for Your Selected Event</h2>
+        <p>Please fill in the details below to sign up for the event.</p>
+        <form id="rsvp-form" action="#" method="post">
+            <div>
+                <label for="event-name">Event Name:</label>
+                <input
+                        type="text"
+                        id="event-name"
+                        name="event-name"
+                        value="Dragon's Den - Dungeons &amp; Dragons"
+                        readonly
+                />
+            </div>
+            <div>
+                <label for="event-date">Event Date &amp; Time:</label>
+                <input
+                        type="text"
+                        id="event-date"
+                        name="event-date"
+                        value="02/25/2025, 2:00 PM - 4:00 PM"
+                        readonly
+                />
+            </div>
+            <div>
+                <label for="number-of-seats">Number of Seats:</label>
+                <input
+                        type="number"
+                        id="number-of-seats"
+                        name="number-of-seats"
+                        min="1"
+                        max="10"
+                        value="1"
+                />
+            </div>
+            <div>
+                <label for="additional-message">Additional Message (optional):</label>
+                <textarea
+                        id="additional-message"
+                        name="additional-message"
+                        rows="4"
+                        placeholder="Any special requests or messages..."
+                ></textarea>
+            </div>
+            <div>
+                <button type="submit">Submit RSVP</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const authBtn = document.getElementById("auth-btn");
+        const playerJSON = localStorage.getItem("player");
+
+        // Redirect if not logged in
+        if (!playerJSON) {
+            authBtn.textContent = "Login";
+            authBtn.addEventListener("click", () => {
+                window.location.href = "login.html";
+            });
+            alert("Please log in to access this page.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // If logged in, set logout behavior
+        authBtn.textContent = "Logout";
+        authBtn.addEventListener("click", () => {
+            localStorage.removeItem("player");
+            alert("You have been logged out.");
+            window.location.href = "login.html";
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L4G - Write a Review</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #auth-container {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #auth-btn {
+      padding: 6px 12px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #auth-btn:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Write a Review</h1>
+  <div id="auth-container">
+    <button id="auth-btn">Login</button>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="playerHome.html">Home/Profile</a></li>
+    <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section>
+    <h2>Submit Your Review</h2>
+    <form id="review-form">
+      <div>
+        <label for="review-for">Review For (Venue/Event):</label>
+        <select id="review-for" name="review-for">
+          <option value="dragons-den">Dragon's Den</option>
+          <option value="wizards-corner">Wizard's Corner</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rating">Rating:</label>
+        <select id="rating" name="rating">
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="review-text">Review:</label>
+        <textarea
+                id="review-text"
+                name="review-text"
+                rows="5"
+                placeholder="Enter your review here..."
+        ></textarea>
+      </div>
+
+      <div>
+        <button type="submit">Submit Review</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer></footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const authBtn = document.getElementById("auth-btn");
+    const playerJSON = localStorage.getItem("player");
+
+    // Redirect and auth button logic
+    if (!playerJSON) {
+      authBtn.textContent = "Login";
+      authBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+      alert("Please log in to access this page.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    const player = JSON.parse(playerJSON);
+
+    // Show logout if logged in
+    authBtn.textContent = "Logout";
+    authBtn.addEventListener("click", () => {
+      localStorage.removeItem("player");
+      alert("You have been logged out.");
+      window.location.href = "login.html";
+    });
+
+    // Handle review submission
+    const reviewForm = document.getElementById("review-form");
+    reviewForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const selectedVenue = document.getElementById("review-for").value;
+      const venueId = selectedVenue === "dragons-den" ? 1 : 2;
+
+      const reviewData = {
+        playerId: player.playerId,
+        venueId: venueId,
+        reviewText: document.getElementById("review-text").value,
+        rating: parseInt(document.getElementById("rating").value)
+      };
+
+      try {
+        const response = await fetch("http://localhost:8080/reviews/new", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(reviewData)
+        });
+
+        if (response.ok) {
+          alert("Review submitted successfully!");
+          reviewForm.reset();
+        } else {
+          alert("Error submitting review.");
+        }
+      } catch (error) {
+        console.error("Error submitting review:", error);
+        alert("Network error.");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

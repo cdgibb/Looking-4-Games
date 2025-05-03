@@ -71,3 +71,22 @@ pre{
 .active[data-tab-content]{
     display: block;
 }
+
+#logout-container {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+#logout-btn {
+    padding: 6px 12px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#logout-btn:hover {
+    background-color: #666;
+}

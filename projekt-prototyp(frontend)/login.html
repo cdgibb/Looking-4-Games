@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L4G - Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Looking 4 Games</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="playerHome.html">Home/Profile</a></li>
+    <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section>
+    <h2>Log In to Your Profile</h2>
+    <form id="login-form">
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+      </div>
+
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required />
+      </div>
+
+      <div>
+        <button type="submit">Login</button>
+      </div>
+    </form>
+
+    <p>New here? <a href="NewProfile.html">Create a profile</a></p>
+  </section>
+</main>
+
+<footer></footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("login-form");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("http://localhost:8080/players/all");
+        const players = await res.json();
+
+        const found = players.find(
+                (p) => p.email === email && p.password === password
+        );
+
+        if (!found) {
+          alert("Invalid email or password.");
+          return;
+        }
+
+        localStorage.setItem("player", JSON.stringify(found));
+        alert("Welcome, " + found.username + "!");
+        window.location.href = "playerHome.html";
+      } catch (err) {
+        console.error("Login error:", err);
+        alert("Unable to log in. Please try again later.");
+      }
+    });
+  });
+</script>
+</body>
+</html>
