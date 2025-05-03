@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 //import java.lang.ScopedValue;
 import java.util.List;
-
+@Repository
 public interface ScheduleRepository extends JpaRepository<Schedule, Integer>{
 
 

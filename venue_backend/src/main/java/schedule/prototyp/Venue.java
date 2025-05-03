@@ -18,6 +18,7 @@ public class Venue {
     private int openTime;
     private int closeTime;
 
+    private String venueBio;
     //constructors
 
 
@@ -142,5 +143,13 @@ public class Venue {
             newSchedule.setVenueId(venueId);
             //sunCarrier++;
         }
+    }
+
+    public void setVenueBio(String venueBio) {
+        this.venueBio = venueBio;
+    }
+
+    public String getVenueBio() {
+        return venueBio;
     }
 }

@@ -52,7 +52,7 @@ public class ScheduleController {
         return "schedule-list";
     }
 
-    @PutMapping("/update/{scheduleId")
+    @PutMapping("/update/{scheduleId}")
     public Object updateSchedule(@PathVariable int scheduleId, @RequestBody Schedule schedule) {
        // scheduleService.updateSchedule(scheduleId, schedule);
        // return new ResponseEntity<>(scheduleService.getByPartyId);

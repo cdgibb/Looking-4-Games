@@ -71,3 +71,25 @@ pre{
 .active[data-tab-content]{
     display: block;
 }
+
+.navbar ul{
+    text-align: center;
+    display: block;
+    list-style-type: none;
+    background-color: rgb(66, 138, 114);
+    padding: 15px;
+    margin: 15px;
+    overflow: hidden;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+}
+.navbar a:hover{
+    background-color: rgb(34, 77, 62);
+}
+.navbar li{
+    float: left;
+    text-align: center;
+}

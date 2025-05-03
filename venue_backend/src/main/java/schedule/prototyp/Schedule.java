@@ -31,7 +31,7 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int timeslotId;
 
-    private Party party;
+    //private Party party;
 
     @Column(nullable = false)
     private int venueId;
@@ -45,12 +45,12 @@ public class Schedule {
 
     }
 
-    public Schedule(int venueId, String day, int startTime, int endTime, Party party){
+    public Schedule(int venueId, String day, int startTime, int endTime){
         this.venueId = venueId;
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.party = party;
+     //   this.party = party;
     }
 
 
@@ -96,11 +96,11 @@ public class Schedule {
         this.endTime = endTime;
     }
 
-    public Party getParty() {
-        return party;
-    }
+//    public Party getParty() {
+//        return party;
+//    }
 
-    public void setParty(Party party) {
-        this.party = party;
-    }
+//    public void setParty(Party party) {
+//        this.party = party;
+//    }
 }

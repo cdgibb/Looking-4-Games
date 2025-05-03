@@ -3,7 +3,7 @@ package schedule.prototyp;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "")
+@Table(name = "party")
 
 /**
  * the "party" is a container that inherits a venue id, schedule id, day, and time from the schedule object that
@@ -29,23 +29,15 @@ public class Party {
     private int venueId;
     //scheduleId
     private int scheduleId;
-
-    @ManyToOne
-    @JoinColumn(name = "")
+//
+//    @ManyToOne
+//    @JoinColumn(name = "")
     //private ????/????;
 
     @Column(nullable = false)
     private int capacity;
-
-    @Column(nullable = false)
     private String name;
-
-    //day
-    @Column(nullable = false)
     private String day;
-
-    //time
-    @Column(nullable = false)
     private int time;
 
     public Party() { }

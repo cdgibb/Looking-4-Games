@@ -21,7 +21,7 @@ public class VenueController {
         //return new ResponseEntity<>(venueService.getAllVenues(), HttpStatus.OK);
         model.addAttribute("venueList", venueService.getAllVenues());
         model.addAttribute("title", "All Venues");
-        return "venue-list";
+        return "venue-home";
     }
 
     @GetMapping("/name")
@@ -47,25 +47,25 @@ public class VenueController {
     public Object createVenue(Model model){
         Venue newVenue = new Venue();
         model.addAttribute("venue", newVenue);
-        model.addAttribute("title", "Regster a Venue");
+        model.addAttribute("title", "Register a Venue");
         return "venue-create";
     }
     @PostMapping("/createVenue")
     public Object createVenue(Venue newVenue, Model model){
         venueService.createVenue(newVenue);
-        newVenue.generateSchedule(newVenue.getOpenTime(), newVenue.getCloseTime());
-        return "redirect:/venues/{newVenue.venueId}";
+        //newVenue.generateSchedule(newVenue.getOpenTime(), newVenue.getCloseTime());
+        return "redirect:/venues/{newVenue.getVenueId()}";
     }
 
-    @GetMapping("/update/{venueId}")
+    @GetMapping("/{venueId}/update")
     public Object updateVenue(@PathVariable int venueId, Model model){
         model.addAttribute("venue", venueService.getVenueById(venueId));
         return "venue-update";
     }
-    @PostMapping("/update/{venueId}")
+    @PostMapping("/{venueId}/update")
     public Object updateVenue(@PathVariable int venueId, Venue venue){
         venueService.updateVenue(venueId, venue);
-        return "redirect:/venues/{venue.venueId}";
+        return "redirect:/venues/{venue.getVenueId()}";
     }
 
     @GetMapping("/delete/{venueId}")
