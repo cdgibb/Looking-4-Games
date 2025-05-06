@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L4G - Create Profile</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* override form‐field backgrounds to match --bg-color */
+        #main-content .card form input,
+        #main-content .card form textarea,
+        #main-content .card form select {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--space-sm);
+            padding: var(--space-sm);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #main-content .card form input:focus,
+        #main-content .card form textarea:focus,
+        #main-content .card form select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+    <div class="sidebar-logo">
+        <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+    </div>
+    <nav>
+        <ul>
+            <li><a href="playerHome.html">Home/Profile</a></li>
+            <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+            <li><a href="RSVPX.html">RSVP</a></li>
+            <li class="active"><a href="NewProfile.html">Create Profile</a></li>
+            <li><a href="WriteReviewX.html">Reviews</a></li>
+        </ul>
+    </nav>
+    <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+    <header class="page-header">
+        <h1>Create Your Profile</h1>
+    </header>
+
+    <section class="card">
+        <h2>Register a New Account</h2>
+        <form id="profile-form">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required />
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+            <div>
+                <label for="bio">Short Bio:</label>
+                <textarea id="bio" name="bio" required></textarea>
+            </div>
+            <div>
+                <label for="location">Location Preferences:</label>
+                <input type="text" id="location" name="location" />
+            </div>
+            <div>
+                <label for="distance">Distance Willing to Travel (miles):</label>
+                <input type="number" id="distance" name="distance" min="0" step="0.1" required />
+            </div>
+            <div>
+                <label for="gaming-interests">Gaming Interests:</label>
+                <textarea
+                        id="gaming-interests"
+                        name="gaming-interests"
+                        rows="4"
+                        placeholder="Enter your gaming interests here..."
+                ></textarea>
+            </div>
+            <div>
+                <button type="submit" class="edit-profile-btn">Create Profile</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<!-- AUTH & FORM SCRIPT -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const authBtn = document.getElementById("auth-btn");
+        // On create‐profile page, we always show "Login"
+        authBtn.textContent = "Login";
+        authBtn.onclick = () => window.location.href = "login.html";
+
+        const form = document.getElementById("profile-form");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const playerData = {
+                username: form.username.value,
+                email: form.email.value,
+                password: form.password.value,
+                bio: form.bio.value,
+                location: form.location.value,
+                preferredGameStyle: form['gaming-interests'].value,
+                distanceWillingToTravel: parseFloat(form.distance.value),
+                roleType: "Customer",
+                status: "active",
+                availableTimes: [],
+                activeGamesIds: [],
+                reviewsWritten: [],
+                recentEventsAttended: [],
+                createdAt: new Date()
+            };
+            try {
+                const res = await fetch("http://localhost:8080/players/new", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(playerData)
+                });
+                if (!res.ok) throw new Error("Profile creation failed");
+                const saved = await res.json();
+                localStorage.setItem("player", JSON.stringify(saved));
+                alert(`Welcome, ${saved.username}! Your profile has been created.`);
+                window.location.href = "playerHome.html";
+            } catch (err) {
+                console.error(err);
+                alert("There was a problem creating your profile.");
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,19 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device.width, initial-scale 1.0" />
-    <title>L4G</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Looking 4 Games</h1>
-    <br />
-    <form action="home.html">
-      <a href="playerHome.html"> Login as Player</a>
-      <a href="venueHome.html"> Login as Venue</a>
-      <a href="adminHome.html"> Login as Admin</a>
-      <br />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L4G - Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Match form field style to other pages */
+    #main-content .card form input,
+    #main-content .card form textarea {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: var(--space-sm);
+      padding: var(--space-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #main-content .card form input:focus,
+    #main-content .card form textarea:focus {
+      outline: none;
+      border-color: var(--accent-darkgold);
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="playerHome.html">Home/Profile</a></li>
+      <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+      <li><a href="RSVPX.html">RSVP</a></li>
+      <li><a href="WriteReviewX.html">Reviews</a></li>
+      <li class="active"><a href="login.html">Login</a></li>
+      <li><a href="NewProfile.html">Create Profile</a></li>
+    </ul>
+  </nav>
+  <!-- Removed duplicate login button -->
+</aside>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <header class="page-header">
+    <h1>Log In to Your Profile</h1>
+  </header>
+
+  <section class="card">
+    <h2>Welcome Back</h2>
+    <form id="login-form">
+      <div>
+        <label for="email">Email:</label><br/>
+        <input type="email" id="email" required />
+      </div>
+      <div>
+        <label for="password">Password:</label><br/>
+        <input type="password" id="password" required />
+      </div>
+      <div>
+        <button type="submit" class="edit-profile-btn">Login</button>
+      </div>
     </form>
-  </body>
+    <p style="text-align: center; margin-top: var(--space-md);">
+      New here? <a href="NewProfile.html" style="color: var(--accent-gold);">Create a profile</a>
+    </p>
+  </section>
+</div>
+
+<!-- LOGIN SCRIPT -->
+<script>
+  document.getElementById("login-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    try {
+      const res = await fetch("http://localhost:8080/players/all");
+      const players = await res.json();
+      const user = players.find(p => p.email === email && p.password === password);
+      if (!user) return alert("Invalid email or password.");
+      localStorage.setItem("player", JSON.stringify(user));
+      alert("Welcome, " + user.username + "!");
+      location.href = "playerHome.html";
+    } catch {
+      alert("Unable to log in. Please try again later.");
+    }
+  });
+</script>
+</body>
 </html>

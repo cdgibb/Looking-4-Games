@@ -3,64 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L4G - View Venues/Games</title>
+  <title>L4G – View Venues &amp; Games</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <h1>Available Venues &amp; Games</h1>
-</header>
 
-<nav>
-  <ul>
-
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+  </div>
+  <nav>
+    <ul>
       <li><a href="playerHome.html">Home/Profile</a></li>
-      <li><a href="ModifyCreateProfileX.html" class="active">Modify/Create Profile</a></li>
-      <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-      <li><a href="RSVPX.html">RSVP for Event</a></li>
-      <li><a href="WriteReviewX.html">Write a Review</a></li>
+      <li class="active"><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+      <li><a href="RSVPX.html">RSVP</a></li>
+      <li><a href="WriteReviewX.html">Reviews</a></li>
+    </ul>
+  </nav>
+  <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
 
-  </ul>
-</nav>
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <header class="page-header">
+    <h1>Available Venues &amp; Games</h1>
+  </header>
 
-<main>
-  <section>
-    <h2>Venues and Gaming Sessions</h2>
-
-    <!-- Venue Card 1 -->
-    <div class="venue-card">
-      <h3>Dragon's Den</h3>
-      <p><strong>Address:</strong> 123 Main St</p>
-      <p><strong>Hours:</strong> 10:00 AM - 10:00 PM</p>
-      <p><strong>Capacity:</strong> 40 Players</p>
-      <p><strong>Game Session:</strong> Dungeons &amp; Dragons</p>
-      <div class="actions">
-        <a href="RSVPX.html"><button type="button">RSVP</button></a>
-        <a href="WriteReviewX.html"><button type="button">Write Review</button></a>
-      </div>
+  <!-- Venue Card: Dragon's Den -->
+  <section class="card venue-card">
+    <h2>Dragon’s Den</h2>
+    <p><strong>Address:</strong> 123 Main St</p>
+    <p><strong>Hours:</strong> 10:00 AM – 10:00 PM</p>
+    <p><strong>Capacity:</strong> 40 Players</p>
+    <p><strong>Game Session:</strong> Dungeons &amp; Dragons</p>
+    <div class="actions">
+      <button class="edit-profile-btn" onclick="location.href='RSVPX.html'">
+        RSVP
+      </button>
+      <button class="edit-profile-btn" onclick="location.href='WriteReviewX.html'">
+        Write Review
+      </button>
     </div>
-
-    <!-- Venue Card 2 -->
-    <div class="venue-card">
-      <h3>Wizard's Corner</h3>
-      <p><strong>Address:</strong> 456 Elm St</p>
-      <p><strong>Hours:</strong> 11:00 AM - 9:00 PM</p>
-      <p><strong>Capacity:</strong> 30 Players</p>
-      <p><strong>Game Session:</strong> Pathfinder</p>
-      <div class="actions">
-        <a href="RSVPX.html"><button type="button">RSVP</button></a>
-        <a href="WriteReviewX.html"><button type="button">Write Review</button></a>
-      </div>
-    </div>
-
-    <!-- Additional venue cards can be added similarly -->
   </section>
-</main>
 
-<footer>
-  <form action="login.html">
-    <input type="submit" value="Logout" />
-  </form>
-</footer>
+  <!-- Venue Card: Wizard's Corner -->
+  <section class="card venue-card">
+    <h2>Wizard’s Corner</h2>
+    <p><strong>Address:</strong> 456 Elm St</p>
+    <p><strong>Hours:</strong> 11:00 AM – 9:00 PM</p>
+    <p><strong>Capacity:</strong> 30 Players</p>
+    <p><strong>Game Session:</strong> Pathfinder</p>
+    <div class="actions">
+      <button class="edit-profile-btn" onclick="location.href='RSVPX.html'">
+        RSVP
+      </button>
+      <button class="edit-profile-btn" onclick="location.href='WriteReviewX.html'">
+        Write Review
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- AUTH BUTTON LOGIC -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("auth-btn");
+    const player = localStorage.getItem("player");
+    if (player) {
+      btn.textContent = "Logout";
+      btn.onclick = () => {
+        localStorage.removeItem("player");
+        location.href = "login.html";
+      };
+    } else {
+      btn.textContent = "Login";
+      btn.onclick = () => location.href = "login.html";
+    }
+  });
+</script>
 </body>
 </html>

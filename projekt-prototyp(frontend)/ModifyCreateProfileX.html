@@ -3,87 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L4G - Modify/Create Profile</title>
+  <title>L4G - Modify Profile</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* make form fields match the other pages */
+    #main-content .card form input,
+    #main-content .card form textarea,
+    #main-content .card form select {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: var(--space-sm);
+      padding: var(--space-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #main-content .card form input:focus,
+    #main-content .card form textarea:focus {
+      outline: none;
+      border-color: var(--accent-darkgold);
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Modify/Create Profile</h1>
-</header>
 
-<nav>
-  <ul>
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+  </div>
+  <nav>
+    <ul>
       <li><a href="playerHome.html">Home/Profile</a></li>
-      <li><a href="ModifyCreateProfileX.html" class="active">Modify/Create Profile</a></li>
-      <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-      <li><a href="RSVPX.html">RSVP for Event</a></li>
-      <li><a href="WriteReviewX.html">Write a Review</a></li>
+      <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+      <li class="active"><a href="ModifyProfile.html">Edit Profile</a></li>
+      <li><a href="WriteReviewX.html">Reviews</a></li>
+    </ul>
+  </nav>
+  <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
 
-  </ul>
-</nav>
+<!-- MAIN CONTENT -->
+<div id="main-content">
 
-<main>
-  <section>
-    <h2>Update Your Profile</h2>
-    <form id="profile-form" action="#" method="post">
+  <header class="page-header">
+    <h1>Edit Your Profile</h1>
+    <button class="edit-profile-btn" onclick="location.href='changePassword.html'">
+      Change Password
+    </button>
+  </header>
+
+  <section class="card profile-card">
+    <h2>Your Account Details</h2>
+
+    <div class="profile-info">
+      <p><strong>Username:</strong> <span id="display-username">…</span></p>
+      <p><strong>Email:</strong> <span id="display-email">…</span></p>
+    </div>
+
+    <form id="profile-form">
       <div>
-        <label for="username">Username:</label>
-        <input
-                type="text"
-                id="username"
-                name="username"
-                value="Jimmy 'Default' John"
-                required
-        />
+        <label for="bio">Short Bio:</label><br/>
+        <textarea id="bio" name="bio" required></textarea>
       </div>
-
       <div>
-        <label for="email">Email:</label>
-        <input
-                type="email"
-                id="email"
-                name="email"
-                value="example@example.com"
-                required
-        />
+        <label for="location">Location Preferences:</label><br/>
+        <input type="text" id="location" name="location" />
       </div>
-
       <div>
-        <label for="location">Location Preferences:</label>
-        <input
-                type="text"
-                id="location"
-                name="location"
-                value="Greensboro / Winston Salem area"
-        />
+        <label for="distance">Distance Willing to Travel (miles):</label><br/>
+        <input type="number" id="distance" name="distance" min="0" step="0.1" required />
       </div>
-
       <div>
-        <label for="gaming-interests">Gaming Interests:</label>
+        <label for="gaming-interests">Gaming Interests:</label><br/>
         <textarea
                 id="gaming-interests"
                 name="gaming-interests"
                 rows="4"
                 placeholder="Enter your gaming interests here..."
-        >I like to play this certain class/type character when I play dnd</textarea>
+        ></textarea>
       </div>
-
       <div>
-        <label for="profile-picture">Profile Picture:</label>
-        <input type="file" id="profile-picture" name="profile-picture" accept="image/*" />
-      </div>
-
-      <div>
-        <button type="submit">Save Profile</button>
+        <button type="submit" class="edit-profile-btn">Save Changes</button>
       </div>
     </form>
   </section>
-</main>
+</div>
 
-<footer>
-  <form action="login.html">
-    <input type="submit" value="Logout" />
-  </form>
-</footer>
+<!-- AUTH & DATA SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const authBtn = document.getElementById("auth-btn");
+    const playerJSON = localStorage.getItem("player");
+    if (!playerJSON) {
+      authBtn.textContent = "Login";
+      authBtn.onclick = () => location.href = "login.html";
+      alert("Please log in to edit your profile.");
+      return;
+    }
+    authBtn.textContent = "Logout";
+    authBtn.onclick = () => {
+      localStorage.removeItem("player");
+      location.href = "login.html";
+    };
+
+    const player = JSON.parse(playerJSON);
+    document.getElementById("display-username").textContent = player.username;
+    document.getElementById("display-email").textContent = player.email;
+
+    document.getElementById("bio").value = player.bio || "";
+    document.getElementById("location").value = player.location || "";
+    document.getElementById("distance").value = player.distanceWillingToTravel || 0;
+    document.getElementById("gaming-interests").value = player.preferredGameStyle || "";
+
+    document.getElementById("profile-form").addEventListener("submit", async e => {
+      e.preventDefault();
+      const updated = {
+        ...player,
+        bio: e.target.bio.value,
+        location: e.target.location.value,
+        preferredGameStyle: e.target['gaming-interests'].value,
+        distanceWillingToTravel: parseFloat(e.target.distance.value)
+      };
+      try {
+        const res = await fetch(`http://localhost:8080/players/update/${player.playerId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updated)
+        });
+        if (!res.ok) throw new Error();
+        const saved = await res.json();
+        localStorage.setItem("player", JSON.stringify(saved));
+        alert("Profile updated successfully!");
+        location.href = "playerHome.html";
+      } catch {
+        alert("Error updating profile.");
+      }
+    });
+  });
+</script>
 </body>
 </html>

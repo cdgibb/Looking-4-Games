@@ -5,39 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L4G - Write a Review</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* match form fields background */
+    #main-content .card form input,
+    #main-content .card form select,
+    #main-content .card form textarea {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: var(--space-sm);
+      padding: var(--space-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #main-content .card form input:focus,
+    #main-content .card form select:focus,
+    #main-content .card form textarea:focus {
+      outline: none;
+      border-color: var(--accent-darkgold);
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Write a Review</h1>
-</header>
 
-<nav>
-  <ul>
-
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+  </div>
+  <nav>
+    <ul>
       <li><a href="playerHome.html">Home/Profile</a></li>
-      <li><a href="ModifyCreateProfileX.html" class="active">Modify/Create Profile</a></li>
-      <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-      <li><a href="RSVPX.html">RSVP for Event</a></li>
-      <li><a href="WriteReviewX.html">Write a Review</a></li>
+      <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+      <li><a href="RSVPX.html">RSVP</a></li>
+      <li class="active"><a href="WriteReviewX.html">Write Review</a></li>
+    </ul>
+  </nav>
+  <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
 
-  </ul>
-</nav>
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <header class="page-header">
+    <h1>Write a Review</h1>
+  </header>
 
-<main>
-  <section>
+  <section class="card">
     <h2>Submit Your Review</h2>
-    <form id="review-form" action="#" method="post">
+    <form id="review-form">
       <div>
-        <label for="review-for">Review For (Venue/Event):</label>
+        <label for="review-for">Review For (Venue/Event):</label><br/>
         <select id="review-for" name="review-for">
           <option value="dragons-den">Dragon's Den</option>
           <option value="wizards-corner">Wizard's Corner</option>
-          <!-- Add more options as needed -->
         </select>
       </div>
-
       <div>
-        <label for="rating">Rating:</label>
+        <label for="rating">Rating:</label><br/>
         <select id="rating" name="rating">
           <option value="1">1 Star</option>
           <option value="2">2 Stars</option>
@@ -46,9 +70,8 @@
           <option value="5">5 Stars</option>
         </select>
       </div>
-
       <div>
-        <label for="review-text">Review:</label>
+        <label for="review-text">Review:</label><br/>
         <textarea
                 id="review-text"
                 name="review-text"
@@ -56,18 +79,58 @@
                 placeholder="Enter your review here..."
         ></textarea>
       </div>
-
       <div>
-        <button type="submit">Submit Review</button>
+        <button type="submit" class="edit-profile-btn">Submit Review</button>
       </div>
     </form>
   </section>
-</main>
+</div>
 
-<footer>
-  <form action="login.html">
-    <input type="submit" value="Logout" />
-  </form>
-</footer>
+<!-- AUTH & REVIEW SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const authBtn = document.getElementById("auth-btn");
+    const playerJSON = localStorage.getItem("player");
+    if (!playerJSON) {
+      authBtn.textContent = "Login";
+      authBtn.onclick = () => location.href = "login.html";
+      alert("Please log in to access this page.");
+      location.href = "login.html";
+      return;
+    }
+    authBtn.textContent = "Logout";
+    authBtn.onclick = () => {
+      localStorage.removeItem("player");
+      alert("You have been logged out.");
+      location.href = "login.html";
+    };
+
+    const player = JSON.parse(playerJSON);
+    document.getElementById("review-form").addEventListener("submit", async e => {
+      e.preventDefault();
+      const venue = document.getElementById("review-for").value;
+      const venueId = venue === "dragons-den" ? 1 : 2;
+      const data = {
+        playerId: player.playerId,
+        venueId,
+        reviewText: document.getElementById("review-text").value,
+        rating: parseInt(document.getElementById("rating").value, 10)
+      };
+      try {
+        const res = await fetch("http://localhost:8080/reviews/new", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error();
+        alert("Review submitted successfully!");
+        e.target.reset();
+      } catch (err) {
+        console.error(err);
+        alert("Error submitting review.");
+      }
+    });
+  });
+</script>
 </body>
 </html>

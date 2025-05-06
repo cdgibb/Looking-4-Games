@@ -5,28 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>L4G - RSVP for Event</title>
     <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* Make all form inputs/textarea in cards use the secondary color */
+        #main-content .card form input,
+        #main-content .card form textarea,
+        #main-content .card form select {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--space-sm);
+            padding: var(--space-sm);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Placeholder text slightly transparent */
+        #main-content .card form input::placeholder,
+        #main-content .card form textarea::placeholder {
+            color: rgba(59, 48, 37, 0.6);
+        }
+    </style>
+
+
 </head>
 <body>
-<header>
-    <h1>RSVP for Event</h1>
-</header>
 
-<nav>
-    <ul>
-
+<!-- SIDEBAR -->
+<aside id="sidebar">
+    <div class="sidebar-logo">
+        <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+    </div>
+    <nav>
+        <ul>
             <li><a href="playerHome.html">Home/Profile</a></li>
-            <li><a href="ModifyCreateProfileX.html" class="active">Modify/Create Profile</a></li>
-            <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-            <li><a href="RSVPX.html">RSVP for Event</a></li>
-            <li><a href="WriteReviewX.html">Write a Review</a></li>
+            <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+            <li class="active"><a href="RSVPX.html">RSVP</a></li>
+            <li><a href="WriteReviewX.html">Reviews</a></li>
         </ul>
-</nav>
+    </nav>
+    <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
 
-<main>
-    <section>
+<!-- MAIN CONTENT -->
+<div id="main-content">
+    <header class="page-header">
+        <h1>RSVP for Event</h1>
+    </header>
+
+    <section class="card">
         <h2>RSVP for Your Selected Event</h2>
         <p>Please fill in the details below to sign up for the event.</p>
-        <form id="rsvp-form" action="#" method="post">
+        <form id="rsvp-form">
             <div>
                 <label for="event-name">Event Name:</label>
                 <input
@@ -68,16 +98,31 @@
                 ></textarea>
             </div>
             <div>
-                <button type="submit">Submit RSVP</button>
+                <button type="submit" class="edit-profile-btn">Submit RSVP</button>
             </div>
         </form>
     </section>
-</main>
+</div>
 
-<footer>
-    <form action="login.html">
-        <input type="submit" value="Logout" />
-    </form>
-</footer>
+<!-- AUTH & REDIRECT SCRIPT -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const authBtn = document.getElementById("auth-btn");
+        const playerJSON = localStorage.getItem("player");
+
+        if (!playerJSON) {
+            authBtn.textContent = "Login";
+            authBtn.onclick = () => { location.href = "login.html"; };
+            alert("Please log in to RSVP.");
+            return;
+        }
+
+        authBtn.textContent = "Logout";
+        authBtn.onclick = () => {
+            localStorage.removeItem("player");
+            location.href = "login.html";
+        };
+    });
+</script>
 </body>
 </html>

@@ -1,18 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device.width, initial-scale 1.0" />
-    <title>L4G</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <h1>Admin Homepage</h1>
-  <!-- administrative actions -->
-  <pre>
-    table of administrative actions
-   </pre
-  >
-  <form action="login.html">
-    <input type="submit" value="Logout" />
-  </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L4G - Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="playerHome.html">Home/Profile</a></li>
+      <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+      <li><a href="RSVPX.html">RSVP</a></li>
+      <li><a href="WriteReviewX.html">Reviews</a></li>
+      <li class="active"><a href="adminHome.html">Admin Home</a></li>
+    </ul>
+  </nav>
+  <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <header class="page-header">
+    <h1>Admin Dashboard</h1>
+  </header>
+
+  <!-- ADMIN ACTIONS CARD -->
+  <section class="card">
+    <h2>Administrative Actions</h2>
+    <pre>
+table of administrative actions
+      </pre>
+  </section>
+</div>
+
+<!-- AUTH BUTTON SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("auth-btn");
+    const player = localStorage.getItem("player");
+    if (player) {
+      btn.textContent = "Logout";
+      btn.onclick = () => {
+        localStorage.removeItem("player");
+        location.href = "login.html";
+      };
+    } else {
+      btn.textContent = "Login";
+      btn.onclick = () => location.href = "login.html";
+    }
+  });
+</script>
+</body>
 </html>
