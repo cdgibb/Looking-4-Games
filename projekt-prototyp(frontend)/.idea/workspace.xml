@@ -1,140 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fda50d1-c15e-4a05-8f4d-865630ea2dff" name="Changes" comment="testing commit through intellij">
-      <change beforePath="$PROJECT_DIR$/../player(backend)/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../player(backend)/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModifyCreateProfileX.html" beforeDir="false" afterPath="$PROJECT_DIR$/ModifyCreateProfileX.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/NewProfile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSVPX.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSVPX.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewVenueGamesX.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewVenueGamesX.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WriteReviewX.html" beforeDir="false" afterPath="$PROJECT_DIR$/WriteReviewX.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/adminHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playerHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/playerHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venueHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/venueHome.html" afterDir="false" />
-    </list>
+    <list default="true" id="f16d923f-ee03-405b-ae43-8e7c04fa053d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;cataylor5&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/cdgibb/Looking-4-Games.git&quot;,
-    &quot;accountId&quot;: &quot;6962426a-1e97-42ff-94a3-89268003d4dc&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2tdn6Nj9vUD8Hn42HcsAmuI3WE5" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.ModifyCreateProfileX.html.executor": "Run",
-    "JavaScript Debug.NewProfile.html.executor": "Run",
-    "JavaScript Debug.RSVPX.html.executor": "Run",
-    "JavaScript Debug.ViewVenueGamesX.html.executor": "Run",
-    "JavaScript Debug.WriteReviewX.html.executor": "Run",
-    "JavaScript Debug.adminHome.html.executor": "Run",
-    "JavaScript Debug.login.html.executor": "Run",
-    "JavaScript Debug.playerHome.html.executor": "Run",
-    "JavaScript Debug.venueHome.html.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Mainplayerbranch",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Carlos Taylor/Desktop/CSC 340/Group Project/Looking-4-Games/projekt-prototyp(frontend)",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="projekt-prototyp" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="projekt-prototyp" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="4fda50d1-c15e-4a05-8f4d-865630ea2dff" name="Changes" comment="" />
-      <created>1740690642695</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1740690642695</updated>
-      <workItem from="1740690643978" duration="607000" />
-      <workItem from="1740691831949" duration="678000" />
-      <workItem from="1741102838147" duration="597000" />
-      <workItem from="1741103509001" duration="3041000" />
-      <workItem from="1741111120414" duration="2353000" />
-      <workItem from="1743514040213" duration="489000" />
-      <workItem from="1743516291027" duration="3168000" />
-      <workItem from="1745519277188" duration="10821000" />
-      <workItem from="1746292994695" duration="2014000" />
-    </task>
-    <task id="LOCAL-00001" summary="testing commit through intellij">
-      <option name="closed" value="true" />
-      <created>1741106810437</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1741106810438</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="testing commit through intellij" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing commit through intellij" />
-  </component>
+    "keyToString": {
+      "last_opened_file_path": "$PROJECT_DIR$"
+    }
+  }]]></component>
 </project>
