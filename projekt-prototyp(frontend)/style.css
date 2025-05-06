@@ -1,92 +1,147 @@
-body{
-    background-color: cyan;
-    margin: 0px;
-    padding: 0px;
+/* 1) Define your theme variables in one place */
+:root {
+    /* Colors */
+    --bg-color: #f4ecd8;         /* parchment */
+    --text-color: #3b3025;       /* dark wood */
+    --primary-color: #a56b46;    /* tavern-oak accent */
+    --link-color: #7a5530;       /* leather-strap */
+    --hover-color: #c89b6d;      /* lighter accent */
+    --table-heading-bg: #e0d4b7; /* subtle parchment */
+
+    /* Typography */
+    --font-base: 'Segoe UI', sans-serif;
+    --font-heading: 'Cinzel', serif;
+
+    /* Spacing scale */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 32px;
 }
-h1{
+
+/* 2) Base resets */
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-base);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* 3) Headings */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
     text-align: center;
 }
-form{
-    text-align: center;
-}
-pre{
-    text-align: center;
-}
-.profile {
-    display: block;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    float: left;
-    margin-right: 15px;
-}
-.banner {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
-    height: 200px;
-    overflow: hidden;
-}
-.banner img {
-    height: 684;
-    margin: 0 0 0 -272;
-}
-.scrollbox {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
-    height: 200px;
-    overflow: scroll;
-}
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-}
-.tabs {
+
+/* 4) Navigation */
+nav ul {
     display: flex;
-    justify-content: space-around;
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-    border-bottom: 1px solid black;
+    justify-content: center;
+    list-style: none;
+    margin: var(--space-md) 0;
+    padding: 0;
+    border-bottom: 2px solid var(--text-color);
+}
+nav li {
+    margin: 0 var(--space-md);
+}
+nav a {
+    text-decoration: none;
+    color: var(--link-color);
+    padding: var(--space-sm) var(--space-md);
+}
+nav a.active,
+nav a:hover {
+    background-color: var(--hover-color);
+    border-radius: var(--space-sm);
 }
 
-.tab{
-    cursor: pointer;
-    padding: 15px;
+/* 5) Tables */
+table {
+    width: 90%;
+    max-width: 800px;
+    margin: var(--space-md) auto;
+    border-collapse: collapse;
 }
-.tab:hover{
-    background-color: #AAA;
+th, td {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--text-color);
 }
-.tab.active {
-    background-color: #CCC;
-}
-[data-tab-content] {
-    display: none;
-}
-
-.active[data-tab-content]{
-    display: block;
+th {
+    background-color: var(--table-heading-bg);
 }
 
-#logout-container {
-    position: absolute;
-    top: 15px;
-    right: 20px;
+/* 6) Forms & Buttons */
+form {
+    width: 90%;
+    max-width: 500px;
+    margin: var(--space-md) auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
 }
-
-#logout-btn {
-    padding: 6px 12px;
-    background-color: #444;
+label {
+    font-weight: bold;
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: var(--space-sm);
+    border: 1px solid var(--text-color);
+    border-radius: var(--space-sm);
+    font-family: var(--font-base);
+}
+button,
+input[type="submit"] {
+    align-self: center;
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--space-sm);
     cursor: pointer;
+    font-family: var(--font-base);
+}
+button:hover,
+input[type="submit"]:hover {
+    background-color: var(--hover-color);
 }
 
-#logout-btn:hover {
-    background-color: #666;
+/* 7) Profile card */
+#profile-details {
+    width: 90%;
+    max-width: 800px;
+    margin: var(--space-lg) auto;
+    padding: var(--space-md);
+    background: white;
+    border: 2px solid var(--text-color);
+    border-radius: var(--space-sm);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--space-md);
+}
+#profile-details img {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+}
+#profile-details h3 {
+    margin-top: 0;
+}
+
+/* 8) Utility */
+.center {
+    display: block;
+    margin: 0 auto;
 }
