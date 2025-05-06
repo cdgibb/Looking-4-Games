@@ -6,66 +6,76 @@
   <title>L4G - Modify Profile</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .field-label {
-      font-weight: bold;
+    /* make form fields match the other pages */
+    #main-content .card form input,
+    #main-content .card form textarea,
+    #main-content .card form select {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: var(--space-sm);
+      padding: var(--space-sm);
+      width: 100%;
+      box-sizing: border-box;
     }
-    .readonly-display {
-      margin-bottom: 10px;
-    }
-    .change-password-btn {
-      margin-top: 5px;
-      padding: 6px 10px;
-      background-color: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .change-password-btn:hover {
-      background-color: #005fa3;
+    #main-content .card form input:focus,
+    #main-content .card form textarea:focus {
+      outline: none;
+      border-color: var(--accent-darkgold);
     }
   </style>
 </head>
 <body>
-<header>
-  <h1>Modify Profile</h1>
-</header>
 
-<nav>
-  <ul>
-    <li><a href="playerHome.html">Home/Profile</a></li>
-    <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-  </ul>
-</nav>
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="playerHome.html">Home/Profile</a></li>
+      <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+      <li class="active"><a href="ModifyProfile.html">Edit Profile</a></li>
+      <li><a href="WriteReviewX.html">Reviews</a></li>
+    </ul>
+  </nav>
+  <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
 
-<main>
-  <section>
-    <h2>Edit Your Profile</h2>
+<!-- MAIN CONTENT -->
+<div id="main-content">
 
-    <div class="readonly-display">
-      <p><span class="field-label">Username:</span> <span id="display-username">...</span></p>
-      <p><span class="field-label">Email:</span> <span id="display-email">...</span></p>
-      <button class="change-password-btn" onclick="window.location.href='changePassword.html'">Change Password</button>
+  <header class="page-header">
+    <h1>Edit Your Profile</h1>
+    <button class="edit-profile-btn" onclick="location.href='changePassword.html'">
+      Change Password
+    </button>
+  </header>
+
+  <section class="card profile-card">
+    <h2>Your Account Details</h2>
+
+    <div class="profile-info">
+      <p><strong>Username:</strong> <span id="display-username">…</span></p>
+      <p><strong>Email:</strong> <span id="display-email">…</span></p>
     </div>
 
     <form id="profile-form">
       <div>
-        <label for="bio">Short Bio:</label>
+        <label for="bio">Short Bio:</label><br/>
         <textarea id="bio" name="bio" required></textarea>
       </div>
-
       <div>
-        <label for="location">Location Preferences:</label>
+        <label for="location">Location Preferences:</label><br/>
         <input type="text" id="location" name="location" />
       </div>
-
       <div>
-        <label for="distance">Distance Willing to Travel (miles):</label>
-        <input type="number" id="distance" name="distance" required min="0" step="0.1" />
+        <label for="distance">Distance Willing to Travel (miles):</label><br/>
+        <input type="number" id="distance" name="distance" min="0" step="0.1" required />
       </div>
-
       <div>
-        <label for="gaming-interests">Gaming Interests:</label>
+        <label for="gaming-interests">Gaming Interests:</label><br/>
         <textarea
                 id="gaming-interests"
                 name="gaming-interests"
@@ -73,68 +83,61 @@
                 placeholder="Enter your gaming interests here..."
         ></textarea>
       </div>
-
       <div>
-        <button type="submit">Save Changes</button>
+        <button type="submit" class="edit-profile-btn">Save Changes</button>
       </div>
     </form>
   </section>
-</main>
+</div>
 
-<footer></footer>
-
+<!-- AUTH & DATA SCRIPT -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const profileForm = document.getElementById("profile-form");
-    const player = JSON.parse(localStorage.getItem("player"));
-
-    if (!player) {
+  document.addEventListener("DOMContentLoaded", () => {
+    const authBtn = document.getElementById("auth-btn");
+    const playerJSON = localStorage.getItem("player");
+    if (!playerJSON) {
+      authBtn.textContent = "Login";
+      authBtn.onclick = () => location.href = "login.html";
       alert("Please log in to edit your profile.");
-      window.location.href = "login.html";
       return;
     }
+    authBtn.textContent = "Logout";
+    authBtn.onclick = () => {
+      localStorage.removeItem("player");
+      location.href = "login.html";
+    };
 
-    // Display readonly info
+    const player = JSON.parse(playerJSON);
     document.getElementById("display-username").textContent = player.username;
     document.getElementById("display-email").textContent = player.email;
 
-    // Fill editable fields
     document.getElementById("bio").value = player.bio || "";
     document.getElementById("location").value = player.location || "";
     document.getElementById("distance").value = player.distanceWillingToTravel || 0;
     document.getElementById("gaming-interests").value = player.preferredGameStyle || "";
 
-    // Submit changes
-    profileForm.addEventListener("submit", async (e) => {
+    document.getElementById("profile-form").addEventListener("submit", async e => {
       e.preventDefault();
-
-      const updatedPlayer = {
+      const updated = {
         ...player,
-        bio: document.getElementById("bio").value,
-        location: document.getElementById("location").value,
-        preferredGameStyle: document.getElementById("gaming-interests").value,
-        distanceWillingToTravel: parseFloat(document.getElementById("distance").value)
+        bio: e.target.bio.value,
+        location: e.target.location.value,
+        preferredGameStyle: e.target['gaming-interests'].value,
+        distanceWillingToTravel: parseFloat(e.target.distance.value)
       };
-
       try {
-        const response = await fetch(`http://localhost:8080/players/update/${player.playerId}`, {
+        const res = await fetch(`http://localhost:8080/players/update/${player.playerId}`, {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(updatedPlayer)
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updated)
         });
-
-        if (!response.ok) throw new Error("Failed to update profile");
-
-        const saved = await response.json();
+        if (!res.ok) throw new Error();
+        const saved = await res.json();
         localStorage.setItem("player", JSON.stringify(saved));
-
         alert("Profile updated successfully!");
-        window.location.href = "playerHome.html";
-      } catch (error) {
-        console.error("Error:", error);
-        alert("There was a problem updating your profile.");
+        location.href = "playerHome.html";
+      } catch {
+        alert("Error updating profile.");
       }
     });
   });

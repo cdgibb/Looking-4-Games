@@ -5,179 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L4G - Player Homepage</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    #auth-container {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    #auth-btn {
-      padding: 6px 12px;
-      background-color: #444;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #auth-btn:hover {
-      background-color: #666;
-    }
-
-    .edit-profile {
-      margin-top: 10px;
-    }
-
-    .edit-profile button {
-      background-color: #0077cc;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .edit-profile button:hover {
-      background-color: #005fa3;
-    }
-  </style>
 </head>
 <body>
 
-<header>
-  <h1>Player Homepage</h1>
-  <div id="auth-container">
-    <button id="auth-btn">Login</button>
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="Looking 4 Games Logo" />
+<!--    <span>Looking 4 Games</span>//-->
   </div>
-</header>
+  <nav>
+    <ul>
+      <li class="active"><a href="playerHome.html">Home/Profile</a></li>
+      <li><a href="ViewVenueGamesX.html">Venues &amp; Games</a></li>
+      <li><a href="RSVPX.html">RSVP</a></li>
+      <li><a href="WriteReviewX.html">Reviews</a></li>
+    </ul>
+  </nav>
+  <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
 
-<nav>
-  <ul>
-    <li><a href="playerHome.html" class="active">Home/Profile</a></li>
-    <li><a href="ViewVenueGamesX.html">View Venues/Games</a></li>
-  </ul>
-</nav>
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <header class="page-header">
+    <h1>Welcome, <span id="player-name">Player</span>!</h1>
+    <button class="edit-profile-btn" onclick="location.href='ModifyCreateProfileX.html'">
+      Edit Profile
+    </button>
+  </header>
 
-<main>
-  <section>
-    <h2>Welcome, <span id="player-name">Player</span>!</h2>
-
+  <!-- PROFILE CARD -->
+  <section class="card profile-card">
     <div class="profile-pic">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="Profile Picture" width="150" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="Profile Picture" />
     </div>
-
-    <div class="edit-profile">
-      <button onclick="window.location.href='ModifyCreateProfileX.html'">Edit Profile</button>
-    </div>
-
     <div class="profile-info">
-      <p><strong>Name:</strong> <span id="username">...</span></p>
-      <p><strong>Bio:</strong> <span id="bio">...</span></p>
-      <p><strong>Location:</strong> <span id="location">...</span></p>
-      <p><strong>Distance Willing to Travel:</strong> <span id="distance">...</span> miles</p>
-      <p><strong>Interests:</strong> <span id="interests">...</span></p>
-    </div>
-
-    <div class="recent-parties">
-      <h3>Recent Events Attended</h3>
-      <ul id="recent-events">
-        <!-- Will be filled dynamically -->
-      </ul>
-    </div>
-
-    <div class="reviews-left">
-      <h3>Reviews I've Left</h3>
-      <p>(To be implemented...)</p>
+      <p><strong>Name:</strong> <span id="username">…</span></p>
+      <p><strong>Bio:</strong> <span id="bio">…</span></p>
+      <p><strong>Location:</strong> <span id="location">…</span></p>
+      <p><strong>Distance:</strong> <span id="distance">…</span> miles</p>
+      <p><strong>Interests:</strong> <span id="interests">…</span></p>
     </div>
   </section>
-</main>
 
-<footer></footer>
+  <!-- RECENT EVENTS -->
+  <section class="card">
+    <h2>Recent Events Attended</h2>
+    <ul id="recent-events"></ul>
+  </section>
 
+  <!-- REVIEWS -->
+  <section class="card">
+    <h2>Reviews I’ve Left</h2>
+    <div id="reviews-container"></div>
+  </section>
+</div>
+
+<!-- AUTH & DATA SCRIPT -->
 <script>
-  document.addEventListener("DOMContentLoaded", async function () {
+  document.addEventListener("DOMContentLoaded", async () => {
     const authBtn = document.getElementById("auth-btn");
     const playerJSON = localStorage.getItem("player");
 
-    // Redirect if not logged in
-    if (!playerJSON) {
+    if (playerJSON) {
+      authBtn.textContent = "Logout";
+      authBtn.onclick = () => {
+        localStorage.removeItem("player");
+        location.href = "login.html";
+      };
+    } else {
       authBtn.textContent = "Login";
-      authBtn.addEventListener("click", () => {
-        window.location.href = "login.html";
-      });
-      alert("Please log in to access this page.");
-      window.location.href = "login.html";
-      return;
+      authBtn.onclick = () => location.href = "login.html";
+      return; // don't populate data if not logged in
     }
 
     const player = JSON.parse(playerJSON);
-
-    // Auth button logic
-    authBtn.textContent = "Logout";
-    authBtn.addEventListener("click", () => {
-      localStorage.removeItem("player");
-      alert("You have been logged out.");
-      window.location.href = "login.html";
-    });
-
-    // Populate basic profile info
     document.getElementById("player-name").textContent = player.username;
     document.getElementById("username").textContent = player.username;
-    document.getElementById("bio").textContent = player.bio || "No bio provided.";
-    document.getElementById("location").textContent = player.location || "Not specified.";
-    document.getElementById("interests").textContent = player.preferredGameStyle || "None listed.";
+    document.getElementById("bio").textContent = player.bio || "No bio yet.";
+    document.getElementById("location").textContent = player.location || "–";
+    document.getElementById("interests").textContent = player.preferredGameStyle || "–";
     document.getElementById("distance").textContent = player.distanceWillingToTravel || "0";
 
     // Recent events
-    const eventList = document.getElementById("recent-events");
-    if (player.recentEventsAttended?.length > 0) {
-      player.recentEventsAttended.forEach(event => {
+    const eventsList = document.getElementById("recent-events");
+    const events = player.recentEventsAttended || [];
+    if (events.length) {
+      events.forEach(ev => {
         const li = document.createElement("li");
-        li.textContent = event;
-        eventList.appendChild(li);
+        li.textContent = ev;
+        eventsList.appendChild(li);
       });
     } else {
-      eventList.innerHTML = "<li>No recent events.</li>";
+      eventsList.innerHTML = "<li>No recent events.</li>";
     }
 
-    // Review venue map
-    const venueMap = {
-      1: "Dragon's Den",
-      2: "Wizard's Corner"
-    };
-
-    // Fetch and display reviews
+    // Reviews
     try {
       const res = await fetch(`http://localhost:8080/reviews/player/${player.playerId}`);
       const reviews = await res.json();
-
-      const reviewsContainer = document.querySelector(".reviews-left");
-      reviewsContainer.innerHTML = "<h3>Reviews I've Left</h3>";
-
-      if (reviews.length === 0) {
-        reviewsContainer.innerHTML += "<p>No reviews yet.</p>";
+      const container = document.getElementById("reviews-container");
+      if (!reviews.length) {
+        container.innerHTML = "<p>No reviews yet.</p>";
       } else {
-        reviews.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
-
-        reviews.forEach(review => {
-          const venueName = venueMap[review.venueId] || "Unknown Venue";
-          const date = new Date(review.submittedAt).toLocaleDateString();
-
-          const div = document.createElement("div");
-          div.innerHTML = `
-            <p><strong>${venueName}</strong> | ⭐ ${review.rating} | ${date}</p>
-            <p>${review.reviewText}</p>
-            <hr />
-          `;
-          reviewsContainer.appendChild(div);
-        });
+        reviews
+                .sort((a,b)=> new Date(b.submittedAt)-new Date(a.submittedAt))
+                .forEach(r => {
+                  const div = document.createElement("div");
+                  div.className = "review-item";
+                  div.innerHTML = `
+                <strong>⭐ ${r.rating}</strong>
+                <span class="review-date">${new Date(r.submittedAt).toLocaleDateString()}</span>
+                <p>${r.reviewText}</p>
+              `;
+                  container.appendChild(div);
+                });
       }
-    } catch (err) {
-      console.error("Review fetch error:", err);
-      const reviewsContainer = document.querySelector(".reviews-left");
-      reviewsContainer.innerHTML += "<p>Error loading reviews.</p>";
+    } catch (e) {
+      console.error(e);
     }
   });
 </script>

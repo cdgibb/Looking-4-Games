@@ -1,12 +1,16 @@
 /* 1) Define your theme variables in one place */
 :root {
-    /* Colors */
-    --bg-color: #f4ecd8;         /* parchment */
-    --text-color: #3b3025;       /* dark wood */
-    --primary-color: #a56b46;    /* tavern-oak accent */
-    --link-color: #7a5530;       /* leather-strap */
-    --hover-color: #c89b6d;      /* lighter accent */
-    --table-heading-bg: #e0d4b7; /* subtle parchment */
+    /* Primary Palette */
+    --bg-color: #f4ecd8;           /* parchment (body background) */
+    --text-color: #fdfcf9;         /* near-white for text */
+    --primary-color: #3b3025;      /* dark wood (sidebar & cards) */
+    --secondary-color: #c89b6d;    /* lighter accent (hover, lines) */
+    --link-color: #7a5530;         /* leather-strap for links */
+
+    /* Accent Palette */
+    --accent-darkgold: #c67a0d;        /* gold highlights */
+    --accent-gold: #d4af37;        /* gold highlights */
+    --accent-purple: #8837d4;      /* purple for buttons, sparse accents */
 
     /* Typography */
     --font-base: 'Segoe UI', sans-serif;
@@ -35,113 +39,142 @@ body {
 /* 3) Headings */
 h1, h2, h3 {
     font-family: var(--font-heading);
-    color: var(--primary-color);
-    margin-top: var(--space-lg);
-    margin-bottom: var(--space-md);
+    color: var(--accent-gold);
+    margin: var(--space-lg) 0 var(--space-md);
     text-align: center;
 }
 
-/* 4) Navigation */
-nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: var(--space-md) 0;
-    padding: 0;
-    border-bottom: 2px solid var(--text-color);
-}
-nav li {
-    margin: 0 var(--space-md);
-}
-nav a {
-    text-decoration: none;
-    color: var(--link-color);
-    padding: var(--space-sm) var(--space-md);
-}
-nav a.active,
-nav a:hover {
-    background-color: var(--hover-color);
-    border-radius: var(--space-sm);
-}
-
-/* 5) Tables */
-table {
-    width: 90%;
-    max-width: 800px;
-    margin: var(--space-md) auto;
-    border-collapse: collapse;
-}
-th, td {
-    padding: var(--space-sm) var(--space-md);
-    border: 1px solid var(--text-color);
-}
-th {
-    background-color: var(--table-heading-bg);
-}
-
-/* 6) Forms & Buttons */
-form {
-    width: 90%;
-    max-width: 500px;
-    margin: var(--space-md) auto;
+/* 4) Sidebar */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    background: var(--primary-color);
+    color: var(--bg-color);
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    align-items: center;
+    padding-top: var(--space-lg);
 }
-label {
-    font-weight: bold;
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-lg);
 }
-input[type="text"],
-input[type="email"],
-input[type="number"],
-textarea,
-select {
+.sidebar-logo img {
+    height: 128px;
+    width: auto;
+}
+#sidebar nav ul {
+    list-style: none;
+    padding: 0;
     width: 100%;
-    padding: var(--space-sm);
-    border: 1px solid var(--text-color);
+}
+#sidebar nav a {
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    color: inherit;
+    text-decoration: none;
+    font-family: var(--font-heading);
+}
+#sidebar nav a.active,
+#sidebar nav a:hover {
+    background: var(--accent-gold);
+    color: var(--accent-purple);
+}
+.sidebar-btn {
+    margin-top: auto;
+    margin-bottom: var(--space-lg);
+    background: var(--accent-gold);
+    color: var(--primary-color);
+    border: none;
     border-radius: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    cursor: pointer;
     font-family: var(--font-base);
 }
-button,
-input[type="submit"] {
-    align-self: center;
-    padding: var(--space-sm) var(--space-lg);
-    background-color: var(--primary-color);
-    color: white;
+.sidebar-btn:hover {
+    background: var(--accent-purple);
+    color: var(--bg-color);
+}
+
+/* 5) Main Content */
+#main-content {
+    margin-left: 240px;
+    padding: var(--space-lg);
+    background: var(--bg-color);
+    min-height: 100vh;
+}
+
+/* 6) Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+}
+.page-header h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+.edit-profile-btn {
+    background: var(--accent-gold);
+    color: var(--primary-color);
     border: none;
+    padding: var(--space-sm) var(--space-lg);
     border-radius: var(--space-sm);
     cursor: pointer;
     font-family: var(--font-base);
 }
-button:hover,
-input[type="submit"]:hover {
-    background-color: var(--hover-color);
+.edit-profile-btn:hover {
+    background: var(--accent-purple);
+    color: var(--bg-color);
 }
 
-/* 7) Profile card */
-#profile-details {
-    width: 90%;
-    max-width: 800px;
-    margin: var(--space-lg) auto;
-    padding: var(--space-md);
-    background: white;
-    border: 2px solid var(--text-color);
+/* 7) Cards */
+.card,
+.profile-card {
+    background: var(--primary-color);
     border-radius: var(--space-sm);
-    display: grid;
-    grid-template-columns: 120px 1fr;
+    padding: var(--space-md);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: var(--space-lg);
+    color: var(--bg-color);
+}
+.profile-card {
+    display: flex;
     gap: var(--space-md);
+    align-items: center;
 }
-#profile-details img {
-    border-radius: 50%;
-    width: 100%;
-    height: auto;
-}
-#profile-details h3 {
+.card h2,
+.profile-card h2 {
+    color: var(--accent-darkgold);
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: var(--space-sm);
     margin-top: 0;
 }
 
-/* 8) Utility */
-.center {
-    display: block;
-    margin: 0 auto;
+/* 8) Review Items */
+.review-item {
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--secondary-color);
+}
+.review-item strong {
+    color: var(--secondary-color);
+}
+.review-date {
+    float: right;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* 9) Profile Picture Size */
+.profile-pic img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
 }

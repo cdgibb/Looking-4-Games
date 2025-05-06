@@ -1,147 +1,96 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device.width, initial-scale 1.0" />
-    <title>L4G</title>
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <h1>Venue Homepage</h1>
-  <!-- venue actions -->
-  <body>
-    <ul class="tabs">
-      <li data-tab-target="#Home" class="active tab">Home</li>
-      <li data-tab-target="#Reviews" class="tab">Reviews</li>
-      <li data-tab-target="#Schedule" class="tab">Schedule</li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L4G – Venue Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/editedlogo3.png" alt="L4G Logo" />
+  </div>
+  <nav>
+    <ul>
+      <li class="active"><a href="venueHome.html">Venue Home</a></li>
+      <li><a href="playerHome.html">Player Profile</a></li>
+      <li><a href="ViewVenueGamesX.html">Browse Games</a></li>
+      <li><a href="RSVPX.html">RSVP</a></li>
+      <li><a href="WriteReviewX.html">Reviews</a></li>
     </ul>
+  </nav>
+  <button id="auth-btn" class="sidebar-btn">Login</button>
+</aside>
 
-    <div class="tab-content">
-      <div id="Home" data-tab-content class="active">
-        <h1>Home</h1>
-        <div class="banner">
-          <img src="img/empty-lot.jpg" alt="placeholder banner image" />
-        </div>
-        <img
-          src="img/local-store-pfp-placeholder.png"
-          alt="placeholder profile picture"
-          class="profile"
-        />
-        <h2>Local Games Store</h2>
-        <h4>0000 Elm St</h4>
-        <pre>
-          Store Hours: M-F 9:00 - 20:00, Sa-Su 10:00 - 23:00
-        </pre>
-        <pre> ★★★★☆ 4.3k</pre>
-      </div>
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <header class="page-header">
+    <h1>Venue Dashboard</h1>
+  </header>
 
-      <div id="Reviews" data-tab-content>
-        <h1>Reviews</h1>
-        <div class="scrollbox">
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-          <h4>Tomato John ★★★★☆</h4>
-          <pre>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Inventore iure temporibus, libero eos facere laborum, vero 
-            assumenda omnis mollitia voluptatum tempore iste tempora 
-            hic sapiente quae dolor enim? Aliquid, debitis!</pre
-          >
-        </div>
-        <pre>Displays list of venue reviews</pre>
-      </div>
-
-      <div id="Schedule" data-tab-content>
-        <h1>Schedule</h1>
-        <pre>displays dynamic schedule</pre>
-        <img
-          src="img/schedule-frame.png"
-          alt="placeholder schedule frame"
-          class="center"
-        />
-      </div>
+  <!-- HOME CARD -->
+  <section class="card">
+    <h2>Home</h2>
+    <div class="banner">
+      <img src="img/empty-lot.jpg" alt="Banner image" />
     </div>
-    <pre>
-    table of venue actions to be done by Veronica
-   </pre
-    >
-    <form action="login.html">
-      <input type="submit" value="Logout" />
-    </form>
-  </body>
+    <div class="profile-pic">
+      <img
+              src="img/local-store-pfp-placeholder.png"
+              alt="Profile picture"
+      />
+    </div>
+    <h3>Local Games Store</h3>
+    <p>0000 Elm St</p>
+    <p>Store Hours: M–F 9:00–20:00, Sa–Su 10:00–23:00</p>
+    <p>★★★★☆ 4.3k</p>
+  </section>
+
+  <!-- REVIEWS CARD -->
+  <section class="card">
+    <h2>Reviews</h2>
+    <div class="scrollbox">
+      <h4>Tomato John ★★★★☆</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+        iure temporibus, libero eos facere laborum…
+      </p>
+      <!-- repeat review items as needed -->
+    </div>
+  </section>
+
+  <!-- SCHEDULE CARD -->
+  <section class="card">
+    <h2>Schedule</h2>
+    <p>Displays dynamic schedule:</p>
+    <img
+            src="img/schedule-frame.png"
+            alt="Schedule frame"
+            class="center"
+    />
+  </section>
+</div>
+
+<!-- AUTH BUTTON SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("auth-btn");
+    const player = localStorage.getItem("player");
+
+    if (player) {
+      btn.textContent = "Logout";
+      btn.onclick = () => {
+        localStorage.removeItem("player");
+        location.href = "login.html";
+      };
+    } else {
+      btn.textContent = "Login";
+      btn.onclick = () => location.href = "login.html";
+    }
+  });
+</script>
+</body>
 </html>
