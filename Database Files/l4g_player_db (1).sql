@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `players`
 --
 
+CREATE DATABASE IF NOT EXISTS l4g_player_db;
+USE l4g_player_db;
+
 CREATE TABLE `players` (
   `player_id` int NOT NULL,
   `bio` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,

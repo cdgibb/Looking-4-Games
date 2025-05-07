@@ -172,9 +172,38 @@ h1, h2, h3 {
 }
 
 /* 9) Profile Picture Size */
+.profile-pic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 120px;
+    margin-right: 20px;
+}
 .profile-pic img {
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 50%;
+    margin-bottom: 6px;
+}
+
+/* 10) Profile Picture upload button */
+.upload-btn {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    background-color: var(--accent-gold);
+    color: var(--primary-color);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 6px;
+}
+
+.upload-btn:hover {
+    background-color: var(--accent-purple);
+    color: var(--bg-color);
 }

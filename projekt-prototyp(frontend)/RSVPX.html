@@ -104,24 +104,51 @@
     </section>
 </div>
 
-<!-- AUTH & REDIRECT SCRIPT -->
+<!-- AUTH, REDIRECT & RSVP HANDLING SCRIPT -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const authBtn = document.getElementById("auth-btn");
+        const authBtn    = document.getElementById("auth-btn");
         const playerJSON = localStorage.getItem("player");
 
+        // — AUTHENTICATION BUTTON LOGIC —
         if (!playerJSON) {
             authBtn.textContent = "Login";
-            authBtn.onclick = () => { location.href = "login.html"; };
+            authBtn.onclick    = () => location.href = "login.html";
             alert("Please log in to RSVP.");
-            return;
+            return; // stop here if not logged in
         }
 
         authBtn.textContent = "Logout";
-        authBtn.onclick = () => {
+        authBtn.onclick     = () => {
             localStorage.removeItem("player");
             location.href = "login.html";
         };
+
+        // — RSVP FORM HANDLER —
+        const form   = document.getElementById("rsvp-form");
+        const player = JSON.parse(playerJSON);
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Build a display string for the event
+            const name = document.getElementById("event-name").value;
+            const date = document.getElementById("event-date").value;
+            const entry = `${name} on ${date}`;
+
+            // Initialize array if missing, then push
+            player.recentEventsAttended = player.recentEventsAttended || [];
+            player.recentEventsAttended.push(entry);
+
+            // Persist back to localStorage
+            localStorage.setItem("player", JSON.stringify(player));
+
+            // You could also POST this update to your backend here if desired
+
+            alert("RSVP successful! We’ve added this event to your Recent Events.");
+            // Redirect so the home page shows the update
+            location.href = "playerHome.html";
+        });
     });
 </script>
 </body>
