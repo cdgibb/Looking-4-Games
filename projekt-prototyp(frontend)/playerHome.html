@@ -12,6 +12,7 @@
 <aside id="sidebar">
   <div class="sidebar-logo">
     <img src="../assets/editedlogo3.png" alt="Looking 4 Games Logo" />
+<!--    <span>Looking 4 Games</span>//-->
   </div>
   <nav>
     <ul>
@@ -36,11 +37,7 @@
   <!-- PROFILE CARD -->
   <section class="card profile-card">
     <div class="profile-pic">
-      <img id="profile-image"
-           src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
-           alt="Profile Picture" />
-      <label for="profile-upload" class="upload-btn">Update Pic</label>
-      <input type="file" id="profile-upload" accept="image/*" hidden />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="Profile Picture" />
     </div>
     <div class="profile-info">
       <p><strong>Name:</strong> <span id="username">…</span></p>
@@ -69,6 +66,7 @@
   document.addEventListener("DOMContentLoaded", async () => {
     const authBtn = document.getElementById("auth-btn");
     const playerJSON = localStorage.getItem("player");
+
     if (playerJSON) {
       authBtn.textContent = "Logout";
       authBtn.onclick = () => {
@@ -102,31 +100,20 @@
       eventsList.innerHTML = "<li>No recent events.</li>";
     }
 
-    // Simple venue lookup map
-    const venueMap = {
-      1: "Dragon's Den",
-      2: "Wizard's Corner",
-      // add more IDs → names as needed
-    };
-
     // Reviews
     try {
       const res = await fetch(`http://localhost:8080/reviews/player/${player.playerId}`);
       const reviews = await res.json();
       const container = document.getElementById("reviews-container");
-
       if (!reviews.length) {
         container.innerHTML = "<p>No reviews yet.</p>";
       } else {
-        // newest first
         reviews
-                .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt))
+                .sort((a,b)=> new Date(b.submittedAt)-new Date(a.submittedAt))
                 .forEach(r => {
-                  const venueName = venueMap[r.venueId] || "Unknown Venue";
                   const div = document.createElement("div");
                   div.className = "review-item";
                   div.innerHTML = `
-                <h4>${venueName}</h4>
                 <strong>⭐ ${r.rating}</strong>
                 <span class="review-date">${new Date(r.submittedAt).toLocaleDateString()}</span>
                 <p>${r.reviewText}</p>
@@ -135,25 +122,8 @@
                 });
       }
     } catch (e) {
-      console.error("Failed loading reviews:", e);
+      console.error(e);
     }
-
-    // Profile image persistence
-    const profileImage = document.getElementById("profile-image");
-    const storedImage = localStorage.getItem("playerProfileImage");
-    if (storedImage) profileImage.src = storedImage;
-
-    const uploadInput = document.getElementById("profile-upload");
-    uploadInput.addEventListener("change", event => {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = e => {
-        profileImage.src = e.target.result;
-        localStorage.setItem("playerProfileImage", e.target.result);
-      };
-      reader.readAsDataURL(file);
-    });
   });
 </script>
 
