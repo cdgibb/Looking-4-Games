@@ -48,31 +48,20 @@
 
   <header class="page-header">
     <h1>Edit Your Profile</h1>
+    <button class="edit-profile-btn" onclick="location.href='changePassword.html'">
+      Change Password
+    </button>
   </header>
 
   <section class="card profile-card">
     <h2>Your Account Details</h2>
+
     <div class="profile-info">
       <p><strong>Username:</strong> <span id="display-username">…</span></p>
       <p><strong>Email:</strong> <span id="display-email">…</span></p>
     </div>
 
     <form id="profile-form">
-      <!-- Password change fields -->
-      <div>
-        <label for="current-password">Current Password:</label><br/>
-        <input type="password" id="current-password" required />
-      </div>
-      <div>
-        <label for="new-password">New Password:</label><br/>
-        <input type="password" id="new-password" required />
-      </div>
-      <div>
-        <label for="confirm-password">Confirm New Password:</label><br/>
-        <input type="password" id="confirm-password" required />
-      </div>
-
-      <!-- Other profile fields -->
       <div>
         <label for="bio">Short Bio:</label><br/>
         <textarea id="bio" name="bio" required></textarea>
@@ -122,7 +111,6 @@
     document.getElementById("display-username").textContent = player.username;
     document.getElementById("display-email").textContent = player.email;
 
-    // populate existing values
     document.getElementById("bio").value = player.bio || "";
     document.getElementById("location").value = player.location || "";
     document.getElementById("distance").value = player.distanceWillingToTravel || 0;
@@ -130,30 +118,13 @@
 
     document.getElementById("profile-form").addEventListener("submit", async e => {
       e.preventDefault();
-
-      const cur = e.target['current-password'].value;
-      const nw  = e.target['new-password'].value;
-      const conf= e.target['confirm-password'].value;
-
-      // verify current password
-      if (cur !== player.password) {
-        return alert("Current password is incorrect");
-      }
-      // verify new / confirm match
-      if (nw !== conf) {
-        return alert("New passwords do not match");
-      }
-
-      // assemble updated object
       const updated = {
         ...player,
-        password: nw,
         bio: e.target.bio.value,
         location: e.target.location.value,
         preferredGameStyle: e.target['gaming-interests'].value,
         distanceWillingToTravel: parseFloat(e.target.distance.value)
       };
-
       try {
         const res = await fetch(`http://localhost:8080/players/update/${player.playerId}`, {
           method: "PUT",
@@ -163,7 +134,7 @@
         if (!res.ok) throw new Error();
         const saved = await res.json();
         localStorage.setItem("player", JSON.stringify(saved));
-        alert("Profile (and password) updated successfully!");
+        alert("Profile updated successfully!");
         location.href = "playerHome.html";
       } catch {
         alert("Error updating profile.");
